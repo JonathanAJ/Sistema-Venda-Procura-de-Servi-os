@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.wc.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/sml/ns/j2ee/
+	http://java.sun.com/xml/ns/j2ee/we-app_2_4.xsd"
+	version="2.4">
+	<servlet>
+		<servlet-name>Nome Identificador do Servlet</servlet-name>
+		<servlet-class>Classe onde ele se encontra</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Nome Identificado do Servlet criado</servlet-name>
+		<url-pattern>Nome que aparecerá na URL</url-pattern>
+	</servlet-mapping>
+</web-app>
