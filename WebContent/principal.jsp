@@ -1,12 +1,6 @@
 <%@ page import="com.projeto.controller.*" %>
 <%@ page import="com.projeto.model.*" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-	<%
-		if(request.getSession(false)==null){
-			response.sendRedirect("index.jsp");
-		}
-	%>
-	<%=request.getSession(false) %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
