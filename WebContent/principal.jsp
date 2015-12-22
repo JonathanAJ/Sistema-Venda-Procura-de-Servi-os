@@ -1,3 +1,8 @@
+<%		
+	if(session.getAttribute("Usuario")==null){		
+		response.sendRedirect("index.jsp");		
+	}else{
+%>
 <%@ page import="com.projeto.controller.*" %>
 <%@ page import="com.projeto.model.*" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -30,3 +35,6 @@
 	<script src="bootstrap-3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
+	<%
+		}
+	%>
