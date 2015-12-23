@@ -1,32 +1,19 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-	<meta charset="UTF-8">
-	<title>Venda de Serviços</title>
-	<link rel="stylesheet" href="bootstrap-3.3.6/css/bootstrap.min.css"/>
-</head>
-<body>
-	<div class="container">
-		<div class="row">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="/Sistema-Venda-Procura-de-Servicos/">
-						Sistema de Venda e Procura de Serviços
-					</a>
-				</div>
-				<form method="POST" action="Login" class="navbar-form navbar-right">
-					<div class="form-group">
-						<input type="text" name="login" class="form-control" placeholder="Login">
-						<input type="password" name="senha" class="form-control" placeholder="Senha">
-					</div>
-					<button type="submit" class="btn btn-default">Entrar</button>
-				</form>
-			</div>
-		</nav>
+<%@ include file="header.jsp"%>
+<div class="row">
+	<nav>
+		<div class="nav-wrapper indigo">
+			<a href="/Sistema-Venda-Procura-de-Servicos/" class="brand-logo center">Logo</a>
+			<ul id="nav-mobile" class="left hide-on-med-and-down">
+		        <li><a href="#" class="waves-effect"><i class="material-icons tiny left">stars</i>Cadastrar</a></li>
+		        <li><a href="#" class="waves-effect">Sobre</a></li>
+			</ul>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="#" class="waves-effect"><i class="material-icons tiny left">perm_identity</i>Login</a></li>
+			</ul>
 		</div>
-	</div>
-	<script src="bootstrap-3.3.6/js/bootstrap.min.js"></script>
-</body>
-</html>
+	</nav>
+</div>
+<%@ include file="search.jsp"%>
+<%@ include file="category.jsp"%>
+<%@ include file="services.jsp"%>
+<%@ include file="footer.jsp"%>
