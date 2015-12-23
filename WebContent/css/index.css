@@ -1,35 +1,34 @@
 /*
- * Sobrescrita do Bootstrap
+ * Sobrescrita do Materialize
  */
  
-.navbar {
-    border-radius: 0px;
+.card .card-image .card-title {
+    padding: 10px;
+    width: 100%;
+    background-color: rgba(63,81,181,0.6);
 }
-.navbar {
-    position: relative;
-    min-height: 50px;
-    margin-bottom: 0px;
-    border: 0px;
+.card .card-title {
+    font-size: 20px;
+    font-weight: 300;
 }
-.navbar-default {
-     background-color: #fff; 
+.card .card-image img {
+    height: 250px;
 }
-
-.form-control {
-    border-radius: 0px;
-}
-.thumbnail {
-    padding: 0px;
-    border-radius: 0px;
-}
-.thumbnail img{
-	height: 250px;
-}
-
 /*
  * MEU CSS
  */
  
 .mg-tp-15{
 	margin-top: 15px;
+}
+.mg-bt-5{
+	margin-bottom: 5px;
+}
+.uppercase{
+	text-transform: uppercase;	
+}
+span.preco.right {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: -4px;
 }
