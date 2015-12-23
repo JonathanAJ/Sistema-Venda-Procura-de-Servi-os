@@ -1,40 +1,30 @@
 <%		
-	if(session.getAttribute("Usuario")==null){		
-		response.sendRedirect("index.jsp");		
+	if(session.getAttribute("Usuario")==null){
+		response.sendRedirect("index.jsp");
 	}else{
 %>
-<%@ page import="com.projeto.controller.*" %>
-<%@ page import="com.projeto.model.*" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-	<meta charset="UTF-8">
-	<title>Venda de Servi√ßos</title>
-	<link rel="stylesheet" href="bootstrap-3.3.6/css/bootstrap.min.css"/>
-</head>
-<body>
-	<div class="container">
-		<div class="row">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="/Sistema-Venda-Procura-de-Servicos/">
-						Sistema de Venda e Procura de Servi√ßos
-					</a>
-				</div>
-				<ul class="nav navbar-nav navbar-right">
-            		<%Usuario usuario = (Usuario) session.getAttribute("Usuario"); %>
-            		<p class="navbar-text">Ol√°, <%= usuario.getLogin() %></p>
-            		<li><a href="/Sistema-Venda-Procura-de-Servicos/Logout">Sair</a></li>
+<%@ include file="header.jsp"%>
+<div class="row">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/Sistema-Venda-Procura-de-Servicos/">
+					Sistema de Venda e Procura de ServiÁos
+				</a>
+				<ul class="nav navbar-nav">	
+			        <li><a href="#">Sobre</a></li>
 			    </ul>
 			</div>
-		</nav>
+			<ul class="nav navbar-nav navbar-right">
+	          		<% Usuario usuario = (Usuario) session.getAttribute("Usuario"); %>
+	          		<li><p class="navbar-text">Ol·, <%= usuario.getLogin() %></p></li>
+	          		<li><a href="/Sistema-Venda-Procura-de-Servicos/Logout">Sair</a></li>
+		    </ul>
 		</div>
-	</div>
-	<script src="bootstrap-3.3.6/js/bootstrap.min.js"></script>
-</body>
-</html>
+	</nav>
+</div>
+<%@ include file="search.jsp"%>
+<%@ include file="footer.jsp"%>
 	<%
 		}
 	%>
