@@ -1,0 +1,35 @@
+/*
+ * Sobrescrita do Bootstrap
+ */
+ 
+.navbar {
+    border-radius: 0px;
+}
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 0px;
+}
+.navbar-default {
+     background-color: #fff; 
+}
+
+.form-control {
+    border-radius: 0px;
+}
+.thumbnail {
+    padding: 0px;
+    border-radius: 0px;
+}
+.thumbnail img{
+	height: 250px;
+}
+
+/*
+ * MEU CSS
+ */
+ 
+.mg-tp-15{
+	margin-top: 15px;
+}
