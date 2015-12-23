@@ -2,7 +2,7 @@
 <div class="row">
 	<nav>
 		<div class="nav-wrapper indigo">
-			<a href="/Sistema-Venda-Procura-de-Servicos/" class="brand-logo center">Logo</a>
+			<a href="/Sistema-Venda-Procura-de-Servicos/" class="brand-logo center">ServLibeR</a>
 			<ul id="nav-mobile" class="left hide-on-med-and-down">
 		        <li><a href="#" class="waves-effect"><i class="material-icons tiny left">stars</i>Cadastrar</a></li>
 		        <li><a href="#" class="waves-effect">Sobre</a></li>
