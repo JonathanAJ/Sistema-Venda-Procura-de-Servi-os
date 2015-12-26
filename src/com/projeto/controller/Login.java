@@ -1,6 +1,6 @@
 package com.projeto.controller;
 
-import java.io.IOException;
+import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import com.projeto.model.*;
@@ -20,12 +20,17 @@ public class Login extends HttpServlet {
 		usuario.setLogin(request.getParameter("login"));
 		usuario.setSenha(request.getParameter("senha"));
 		
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/plain");
+		response.setCharacterEncoding("UTF-8");
 		if(usuario.getLogin().equals("JonathanA") && usuario.getSenha().equals("12345")){
 			HttpSession ss = request.getSession(true);
 			ss.setAttribute("Usuario", usuario);
-			response.sendRedirect("principal.jsp");
+//			response.sendRedirect("principal.jsp");
+			out.write("1");
 		}else{
-			response.sendRedirect("index.jsp");
+//			response.sendRedirect("index.jsp");
+			out.write("0");
 		}
 		
 	}
