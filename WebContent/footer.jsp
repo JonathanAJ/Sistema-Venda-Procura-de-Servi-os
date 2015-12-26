@@ -8,8 +8,8 @@
 						<div class="row">
 							<div class="input-field col s12 blue-text">
 								<i class="material-icons prefix">account_circle</i>
-								<input id="usuario" type="text" class="validate" name="login">
-								<label for="usuario">Usuário</label>
+								<input id="login" type="text" class="validate" name="login">
+								<label for="login">Login</label>
 							</div>
 						</div>
 						<div class="row">
