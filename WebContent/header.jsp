@@ -1,6 +1,9 @@
 <%@ page import="com.projeto.controller.*" %>
 <%@ page import="com.projeto.model.*" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	Usuario user = (Usuario)session.getAttribute("Usuario");
+%>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -22,9 +25,35 @@
 			        <li><a href="#" class="waves-effect"><i class="material-icons tiny left">stars</i>Cadastrar</a></li>
 			        <li><a href="#" class="waves-effect">Sobre</a></li>
 				</ul>
+				<%
+				// Se não existir usuário logado
+				if(user==null){
+				%>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 			        <li><a href="#loginModal" class="waves-effect modal-trigger"><i class="material-icons tiny left">perm_identity</i>Login</a></li>
 				</ul>
+				<%
+				}else{
+				%>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+				    <!-- Dropdown Trigger -->
+				    <li>
+				    	<a class="dropdown-button" href="#!" data-activates="menu-drop">
+				    		<i class="material-icons right">arrow_drop_down</i>
+				    		Olá, <%= user.getLogin() %>
+				    	</a>
+				    </li>
+				</ul>
+				<!-- Dropdown Structure -->
+				<ul id="menu-drop" class="dropdown-content">
+					<li class="divider"></li>
+					<li><a href="principal.jsp">Meus serviços</a></li>
+					<li class="divider"></li>
+					<li><a href="Logout">Sair</a></li>
+				</ul>
+				<%
+				}
+				%>
 			</div>
 		</nav>
 	</div>
