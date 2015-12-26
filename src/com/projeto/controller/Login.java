@@ -26,10 +26,8 @@ public class Login extends HttpServlet {
 		if(usuario.getLogin().equals("JonathanA") && usuario.getSenha().equals("12345")){
 			HttpSession ss = request.getSession(true);
 			ss.setAttribute("Usuario", usuario);
-//			response.sendRedirect("principal.jsp");
 			out.write("1");
 		}else{
-//			response.sendRedirect("index.jsp");
 			out.write("0");
 		}
 		
