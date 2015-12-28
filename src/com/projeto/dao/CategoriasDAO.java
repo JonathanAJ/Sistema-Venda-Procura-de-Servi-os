@@ -8,6 +8,7 @@ import com.projeto.model.Categoria;
 public class CategoriasDAO {
 	
 	private List<Categoria> categorias = new ArrayList<Categoria>();
+	private Categoria categ = new Categoria();
 	
 	public List<Categoria> getCategorias(){
 		try {
@@ -17,7 +18,6 @@ public class CategoriasDAO {
 	        String sql = "SELECT categ_nome FROM vendas.categoria;";
 	        ResultSet resultSet = statement.executeQuery(sql);
 	        while (resultSet.next()) {
-	        	Categoria categ = new Categoria();
 	        	categ.setCategNome(resultSet.getString("categ_nome"));
 	        	categorias.add(categ);
 	        }
