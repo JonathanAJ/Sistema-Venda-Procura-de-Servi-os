@@ -1,13 +1,12 @@
 package com.projeto.controller;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
 public class ConexaoBD {
 	public Connection getConexao() {
 		Connection conexao = null;
 		String usuario = "postgres";
-		String senha = "P@ssw0rdBD";
+		String senha = "";
 		String nomeBancoDados = "sistemaVendas";
  
 		try {
