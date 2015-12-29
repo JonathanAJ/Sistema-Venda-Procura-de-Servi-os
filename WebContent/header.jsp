@@ -21,20 +21,23 @@
 		<nav class="teal lighten-2">
 			<div class="nav-wrapper container">
 				<a href="/Sistema-Venda-Procura-de-Servicos/" class="brand-logo center">ServLibeR</a>
-				<ul id="nav-mobile" class="left hide-on-med-and-down">
-			        <li><a href="#" class="waves-effect"><i class="material-icons tiny left">stars</i>Cadastrar</a></li>
-			        <li><a href="#" class="waves-effect">Sobre</a></li>
-				</ul>
 				<%
 				// Se não existir usuário logado
 				if(user==null){
 				%>
+				<ul id="nav-mobile" class="left hide-on-med-and-down">
+			        <li><a href="#cadastrarModal" class="waves-effect modal-trigger"><i class="material-icons tiny left">stars</i>Cadastrar</a></li>
+			        <li><a href="#" class="waves-effect">Sobre</a></li>
+				</ul>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 			        <li><a href="#loginModal" class="waves-effect modal-trigger"><i class="material-icons tiny left">perm_identity</i>Login</a></li>
 				</ul>
 				<%
 				}else{
 				%>
+				<ul id="nav-mobile" class="left hide-on-med-and-down">
+			        <li><a href="#" class="waves-effect"><i class="material-icons tiny left">stars</i>Sobre</a></li>
+				</ul>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 				    <!-- Dropdown Trigger -->
 				    <li>
