@@ -3,7 +3,7 @@
 <%@page import="com.projeto.model.*"%>
 <div class="row mg-tp-15">
   <div class="col s5 m3">
-  <h4 class="indigo-text text-lighten-2 center-align">Categorias</h4>
+  	<h4 class="indigo-text text-lighten-2 center-align">Categorias</h4>
 	<div class="collection uppercase">
 	<%
 		CategoriasDAO catDao = new CategoriasDAO();
