@@ -9,19 +9,18 @@
 							<div class="input-field col s12 blue-text">
 								<i class="material-icons prefix">account_circle</i>
 								<input id="login" type="text" class="validate" name="login">
-								<label for="login">Login</label>
+								<label for="login" data-error="Login inválido!">Login</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 blue-text">
 								<i class="material-icons prefix">vpn_key</i>
 								<input id="senha" type="password" class="validate" name="senha">
-								<label for="senha">Senha</label>
+								<label for="senha" data-error="Senha inválida!">Senha</label>
 							</div>
 						</div>
 					</form>
 				</div>
-				<div class="divider"></div>
 				<div class="row center-align">
 		            <p>
 		                <a href="#" class="btn waves-effect waves-light red modal-close mg-tp-15">Cancelar<i class="material-icons right">not_interested</i></a>
@@ -41,25 +40,25 @@
 						<div class="row">
 							<div class="input-field col s6 blue-text">
 								<i class="material-icons prefix">account_circle</i>
-								<input id="cadastroLogin" type="text" class="validate" name="login">
-								<label for="cadastroLogin">Login</label>
+								<input id="cadastroLogin" type="text" class="validate" name="cadLogin" required>
+								<label for="cadastroLogin" data-error="Usuário inválido, tente outro">Login</label>
 							</div>
 							<div class="input-field col s6 blue-text">
 								<i class="material-icons prefix">email</i>
-								<input id="email" type="email" class="validate" name="email">
-								<label for="email">E-mail</label>
+								<input id="cadastroEmail" type="email" class="validate" name="cadEmail" required>
+								<label for="cadastroEmail" data-error="E-mail inválido!">E-mail</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s6 blue-text">
 								<i class="material-icons prefix">vpn_key</i>
-								<input id="cadastroSenha" type="password" class="validate" name="senha">
-								<label for="cadastroSenha">Senha</label>
+								<input id="cadastroSenha" type="password" class="validate" name="cadSenha" required>
+								<label for="cadastroSenha" data-error="Senha inválida!">Senha</label>
 							</div>
 							<div class="input-field col s6 blue-text">
 								<i class="material-icons prefix">replay</i>
-								<input id="confirmaSenha" type="password" class="validate" name="confirmaSenha">
-								<label for="confirmaSenha">Confirmar Senha</label>
+								<input id="confirmaSenha" type="password" class="validate" name="confirmaCadSenha"  required>
+								<label for="confirmaSenha" data-error="Senhas não conferem">Confirmar Senha</label>
 							</div>
 						</div>
 					</form>
