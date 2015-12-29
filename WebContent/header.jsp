@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div class="navbar-fixed">
-		<nav class="indigo">
+		<nav class="teal lighten-2">
 			<div class="nav-wrapper container">
 				<a href="/Sistema-Venda-Procura-de-Servicos/" class="brand-logo center">ServLibeR</a>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
