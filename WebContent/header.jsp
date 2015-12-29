@@ -50,7 +50,7 @@
 				<!-- Dropdown Structure -->
 				<ul id="menu-drop" class="dropdown-content">
 					<li class="divider"></li>
-					<li><a href="principal.jsp">Meus serviços</a></li>
+					<li><a href="principal.jsp">Principal</a></li>
 					<li class="divider"></li>
 					<li><a href="Logout">Sair</a></li>
 				</ul>
@@ -60,7 +60,7 @@
 			</div>
 		</nav>
 	</div>
-	<nav class="indigo lighten-2 ">
+	<nav class="indigo lighten-2 z-depth-0">
 		<div class="nav-wrapper container">
 			<form>
 				<div class="input-field">
