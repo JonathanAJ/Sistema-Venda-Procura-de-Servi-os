@@ -1,6 +1,5 @@
 	<div class="col s7 m9">
 		<div class="row">
-			<h5 class="indigo-text text-lighten-2">Meus serviços</h5>
 			<div class="col s12 m6">
 				<div class="card hoverable">
 					<div class="card-image">
