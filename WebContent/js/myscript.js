@@ -1,6 +1,8 @@
 $(document).ready(function(){
-	// Inicializando modal Materialize
+	// Inicializando Modal Materialize
     $('.modal-trigger').leanModal();
+    // Inicializando Select Materialize
+    $('select').material_select();
     
     //Fazendo login
     $("#fazerLogin").click(function(){
