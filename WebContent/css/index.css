@@ -5,7 +5,7 @@
 .card .card-image .card-title {
     padding: 10px;
     width: 100%;
-    background-color: rgba(63,81,181,0.6);
+    background-color: rgba(0,0,0,0.6);
 }
 .card .card-title {
     font-size: 20px;
@@ -20,6 +20,9 @@
 /*
  * MEU CSS
  */
+body{
+	background-color: #fff;
+}
  
 .mg-tp-15{
 	margin-top: 15px;
