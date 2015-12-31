@@ -2,36 +2,36 @@ package com.projeto.model;
 
 public class Favoritos {
 	
-	private Long favorPkId;
-	private int favorFkServ;
-	private int favorFkUsuario;
+	private Long favoritoPkId;
+	private int favoritoFkServ;
+	private int favoritoFkUsuario;
 
 	public Favoritos(){
 		
 	}
 	
-	public Long getFavorPkId() {
-		return favorPkId;
+	public Long getFavoritoPkId() {
+		return favoritoPkId;
 	}
 
-	public void setFavorPkId(Long favorPkId) {
-		this.favorPkId = favorPkId;
+	public void setFavoritoPkId(Long favoritoPkId) {
+		this.favoritoPkId = favoritoPkId;
 	}
 
-	public int getFavorFkServ() {
-		return favorFkServ;
+	public int getFavoritoFkServ() {
+		return favoritoFkServ;
 	}
 
-	public void setFavorFkServ(int favorFkServ) {
-		this.favorFkServ = favorFkServ;
+	public void setFavorFkServ(int favoritoFkServ) {
+		this.favoritoFkServ = favoritoFkServ;
 	}
 
-	public int getFavorFkUsuario() {
-		return favorFkUsuario;
+	public int getFavoritoFkUsuario() {
+		return favoritoFkUsuario;
 	}
 
-	public void setFavorFkUsuario(int favorFkUsuario) {
-		this.favorFkUsuario = favorFkUsuario;
+	public void setFavoritoFkUsuario(int favoritoFkUsuario) {
+		this.favoritoFkUsuario = favoritoFkUsuario;
 	}
 	
 }

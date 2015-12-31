@@ -1,23 +1,21 @@
 package com.projeto.model;
 
-public class CadastroPessoa {
+public class Pessoa {
 	
 	private Long pessoaPkId;
 	private String pessoaNomeCompleto;
 	private String pessoaSexo;
-	private String pessoaCpfCnpj;
+	private String pessoaCpf;
+	private String pessoaCnpj;
 	private String pessoaEmail;
 	private String pessoaTelefone;
 	private String pessoaCep;
-	private String pessoaEndereco;
-	private String pessoaComplemento;
-	private String pessoaNumero;
-	private int pessoaFkTipoContato;
+	private String pessoaBairro;
 	private int pessoaFkCidade;
 	private int pessoaFkEstado;
 	private int pessoaFkUsuario;
 	
-	public CadastroPessoa(){
+	public Pessoa(){
 		
 	}
 
@@ -45,12 +43,20 @@ public class CadastroPessoa {
 		this.pessoaSexo = pessoaSexo;
 	}
 
-	public String getPessoaCpfCnpj() {
-		return pessoaCpfCnpj;
+	public String getPessoaCpf() {
+		return pessoaCpf;
 	}
 
-	public void setPessoaCpfCnpj(String pessoaCpfCnpj) {
-		this.pessoaCpfCnpj = pessoaCpfCnpj;
+	public void setPessoaCpf(String pessoaCpf) {
+		this.pessoaCpf = pessoaCpf;
+	}
+	
+	public String getPessoaCnpj() {
+		return pessoaCnpj;
+	}
+
+	public void setPessoaCnpj(String pessoaCnpj) {
+		this.pessoaCnpj = pessoaCnpj;
 	}
 
 	public String getPessoaEmail() {
@@ -77,36 +83,12 @@ public class CadastroPessoa {
 		this.pessoaCep = pessoaCep;
 	}
 
-	public String getPessoaEndereco() {
-		return pessoaEndereco;
+	public String getPessoaBairro() {
+		return pessoaBairro;
 	}
 
-	public void setPessoaEndereco(String pessoaEndereco) {
-		this.pessoaEndereco = pessoaEndereco;
-	}
-
-	public String getPessoaComplemento() {
-		return pessoaComplemento;
-	}
-
-	public void setPessoaComplemento(String pessoaComplemento) {
-		this.pessoaComplemento = pessoaComplemento;
-	}
-
-	public String getPessoaNumero() {
-		return pessoaNumero;
-	}
-
-	public void setPessoaNumero(String pessoaNumero) {
-		this.pessoaNumero = pessoaNumero;
-	}
-
-	public int getPessoaFkTipoContato() {
-		return pessoaFkTipoContato;
-	}
-
-	public void setPessoaFkTipoContato(int pessoaFkTipoContato) {
-		this.pessoaFkTipoContato = pessoaFkTipoContato;
+	public void setPessoaBairro(String pessoaBairro) {
+		this.pessoaBairro = pessoaBairro;
 	}
 
 	public int getPessoaFkCidade() {
