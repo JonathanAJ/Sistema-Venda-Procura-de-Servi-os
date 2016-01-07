@@ -48,9 +48,6 @@ public class Usuario {
 
 	public void setDataDesativacao(Date dataDesativacao) {
 		this.dataDesativacao = dataDesativacao;
-	}
-	
-	
-	
+	}	
 	
 }

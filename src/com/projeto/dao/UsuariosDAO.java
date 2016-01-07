@@ -10,7 +10,7 @@ import com.projeto.model.*;
 
 public class UsuariosDAO {
 	
-	public Usuario getUsuario(String login, String senha){
+	public Usuario validarLogin(String login, String senha){
 		Connection connection = new ConexaoBD().getConexao();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -32,7 +32,6 @@ public class UsuariosDAO {
                 user.setDataDesativacao(rs.getDate("user_data_desativacao"));
                 
                 if(user.getDataDesativacao()==null){
-                    System.out.println(user.getLogin() + " / " + user.getSenha());
                     return user;
                 }
  
