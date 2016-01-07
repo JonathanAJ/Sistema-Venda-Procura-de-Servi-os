@@ -20,19 +20,15 @@ public class Login extends HttpServlet {
 		
 		Usuario user = new Usuario();
 		
-		String login_form = request.getParameter("login"); // Pega o Login vindo do formulario
-		String senha_form = request.getParameter("senha"); //Pega a senha vinda do formulario
-
-
-        System.out.println(login_form);
-        System.out.println(senha_form);
+		String login_form = request.getParameter("login");
+		String senha_form = request.getParameter("senha"); 
         
 		try {
 			UsuariosDAO dao = new UsuariosDAO(); //cria uma instancia do DAO usuario
 			user = dao.getUsuario(login_form, senha_form);
 		}
-		catch ( Exception e ){
-			System.out.println("Exception: "+e);
+		catch (Exception e){
+			e.printStackTrace();
 		}
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");

@@ -19,13 +19,14 @@
     </div>
     <div id="test2" class="col s12">
 		<div class="row">
-		<%@ include file="services.jsp"%>
-    </div>
-    <div id="test3" class="col s12">
-		<h4 class="indigo-text text-lighten-2 center-align">Aba 3</h4>
-    </div>
-    <div id="test4" class="col s12">
-		<h4 class="indigo-text text-lighten-2 center-align">Aba 4</h4>
+			<%@ include file="services.jsp"%>
+    	</div>
+	    <div id="test3" class="col s12">
+			<h4 class="indigo-text text-lighten-2 center-align">Aba 3</h4>
+	    </div>
+	    <div id="test4" class="col s12">
+			<h4 class="indigo-text text-lighten-2 center-align">Aba 4</h4>
+		</div>
 	</div>
 </div>
 <%@ include file="footer.jsp"%>

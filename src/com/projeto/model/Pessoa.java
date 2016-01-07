@@ -14,6 +14,7 @@ public class Pessoa {
 	private int pessoaFkCidade;
 	private int pessoaFkEstado;
 	private int pessoaFkUsuario;
+	private short pessoaTipo;
 	
 	public Pessoa(){
 		
@@ -113,6 +114,14 @@ public class Pessoa {
 
 	public void setPessoaFkUsuario(int pessoaFkUsuario) {
 		this.pessoaFkUsuario = pessoaFkUsuario;
+	}
+
+	public short getPessoaTipo() {
+		return pessoaTipo;
+	}
+
+	public void setPessoaTipo(short pessoaTipo) {
+		this.pessoaTipo = pessoaTipo;
 	}
 	
 
