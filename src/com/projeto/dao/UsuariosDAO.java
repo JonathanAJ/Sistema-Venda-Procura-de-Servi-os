@@ -10,7 +10,7 @@ import com.projeto.model.*;
 
 public class UsuariosDAO {
 	
-	public Usuario validarLogin(String login, String senha){
+	public Usuario getUsuario(String login, String senha){
 		Connection connection = new ConexaoBD().getConexao();
         PreparedStatement ps = null;
         ResultSet rs = null;

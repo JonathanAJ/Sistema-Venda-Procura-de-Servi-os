@@ -28,7 +28,6 @@
 		<h4 class="indigo-text text-lighten-2 center-align">Aba 4</h4>
 	</div>
 	</div>
-</div>
 <%@ include file="footer.jsp"%>
 	<%
 		}

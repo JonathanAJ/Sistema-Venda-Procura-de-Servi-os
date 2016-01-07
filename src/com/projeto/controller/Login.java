@@ -27,7 +27,7 @@ public class Login extends HttpServlet {
         
 		try {
 			UsuariosDAO dao = new UsuariosDAO();
-			user = dao.validarLogin(login_form, senha_form);
+			user = dao.getUsuario(login_form, senha_form);
 		}
 		catch (Exception e){
 			e.printStackTrace();
