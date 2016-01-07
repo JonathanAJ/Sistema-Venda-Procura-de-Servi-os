@@ -36,7 +36,7 @@
   				<h4 class="indigo-text text-lighten-2 center-align">Cadastre-se</h4>
 				<div class="row">
 					<div class="divider mg-bt-20"></div>
-					<form class="col s10 offset-s1" method="POST" action="UsuarioController">
+					<form id="formCadastroUsuario" class="col s10 offset-s1" method="POST" action="UsuarioController">
 						<div class="row">
 							<div class="input-field col s6 blue-text">
 								<i class="material-icons prefix">account_circle</i>

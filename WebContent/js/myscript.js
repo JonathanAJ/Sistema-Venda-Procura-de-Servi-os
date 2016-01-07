@@ -71,20 +71,22 @@ $(document).ready(function(){
 	        	$.ajax({
 	    		  method: "POST",
 	    		  url: "UsuarioController",
-	    		  data: {login: $cadastroLogin.val(),
+	    		  data: {acao: "criar",
+	    			  	 login: $cadastroLogin.val(),
 	    			  	 senha: $cadastroSenha.val(),
 	    			  	 email: $cadastroEmail.val()},
 	    		  beforeSend: function() {
 	    			  
 	    		  }
 	    		}).done(function( msg ) {
-	    			console.log(msg);
 	    			if(msg=="1"){
 	    				Materialize.toast('Usuário '+$cadastroLogin.val()+' foi cadastrado com sucesso!', 4000)
+	    				$('#cadastrarModal').closeModal();
+	    				$("#formCadastroUsuario")[0].reset();
 	    			}else{
-	    				bt.removeClass("disabled");
 	    				$cadastroLogin.addClass("invalid");
 	    			}
+    				bt.removeClass("disabled");
 	        	});
         	}
     	}
