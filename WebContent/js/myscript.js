@@ -34,7 +34,7 @@ $(document).ready(function(){
 	    				window.location.href = "principal.jsp";
 	    			}else{
 	    				bt.removeClass("disabled");
-	    				Materialize.toast('Login ou senha incorreto tente novamente!', 4000)
+	    				Materialize.toast('Login ou senha incorreto tente novamente!', 4000);
 	    			}
 	        	});
         	}
@@ -80,7 +80,7 @@ $(document).ready(function(){
 	    		  }
 	    		}).done(function( msg ) {
 	    			if(msg=="1"){
-	    				Materialize.toast('Usuário '+$cadastroLogin.val()+' foi cadastrado com sucesso!', 4000)
+	    				Materialize.toast('Usuário '+$cadastroLogin.val()+' foi cadastrado com sucesso!', 4000);
 	    				$('#cadastrarModal').closeModal();
 	    				$("#formCadastroUsuario")[0].reset();
 	    			}else{
@@ -89,6 +89,55 @@ $(document).ready(function(){
     				bt.removeClass("disabled");
 	        	});
         	}
+    	}
+    });
+    
+    //Cadastrar Pessoa
+    $("#cadastrarPessoa").click(function(){
+    	var bt = $("#cadastrarPessoa");
+    	if(!bt.hasClass('disabled')){
+        	bt.addClass("disabled");
+        	var $pessoaNome = $('#pessoaNome');
+        	var $pessoaEmail = $('#pessoaEmail');
+        	var $pessoaTelefone = $('#pessoaTelefone');
+        	var $pessoaSexo = $('#pessoaSexo');
+        	var $pessoaTipo = $('#pessoaTipo');
+        	var $pessoaDoc = $('#pessoaDoc');
+        	var $pessoaCep = $('#pessoaCep');
+        	var $pessoaBairro = $('#pessoaBairro');
+        	var $pessoaEstado = $('#pessoaEstado option:selected');
+        	var $pessoaCidade = $('#pessoaCidade option:selected');
+        	$pessoaCidade.val();
+        	$pessoaEstado.val();
+        	console.log($pessoaCidade.val());
+        	console.log($pessoaEstado.val());
+        	console.log($pessoaSexo.val());
+        	
+        	$.ajax({
+    		  method: "POST",
+    		  url: "PessoaController",
+    		  data: {acao: "atualizar",
+    			  	pessoaNome: $pessoaNome.val(),
+    			  	pessoaEmail: $pessoaEmail.val(),
+    			  	pessoaTelefone: $pessoaTelefone.val(),
+    			  	pessoaSexo: $pessoaSexo.val(),
+    			  	pessoaTipo: $pessoaTipo.val(),
+    			  	pessoaDoc: $pessoaDoc.val(),
+    			  	pessoaCep: $pessoaCep.val(),
+    			  	pessoaBairro: $pessoaBairro.val(),
+    			  	pessoaEstado: $pessoaEstado.val(),
+    			  	pessoaCidade: $pessoaCidade.val()},
+    		  beforeSend: function() {
+    			  
+    		  }
+    		}).done(function( msg ) {
+    			if(msg=="1"){
+    				Materialize.toast('Alterações concluídas com êxito!', 4000);
+    			}else{
+    				Materialize.toast('Houve algo errado com a execução!', 4000);
+    			}
+				bt.removeClass("disabled");
+        	});
     	}
     });
 });
