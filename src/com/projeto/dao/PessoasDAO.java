@@ -1,6 +1,7 @@
 package com.projeto.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.projeto.controller.ConexaoBD;
-import com.projeto.model.Pessoa;
+import com.projeto.model.*;
 
 public class PessoasDAO {
 	
@@ -48,5 +49,33 @@ private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	        System.out.println("Erro no SQL: "+ex);
 	        return null;
 	    }
+	}
+	
+	public int atualizarPessoa(Pessoa pessoa){
+		try{
+        	Connection connection = new ConexaoBD().getConexao();
+        	PreparedStatement ps = null;
+			/*
+			 * Atualiza Pessoa 
+			 */
+			ps = connection.prepareStatement("UPDATE sistema.pessoa SET"+
+											 " pessoa_nome_completo='"+pessoa.getPessoaNomeCompleto()+"',"+
+											 " pessoa_sexo='"+pessoa.getPessoaSexo()+"',"+
+											 " pessoa_cpf='"+pessoa.getPessoaCpf()+"',"+
+											 " pessoa_email='"+pessoa.getPessoaEmail()+"',"+
+											 " pessoa_telefone='"+pessoa.getPessoaTelefone()+"',"+
+											 " pessoa_cep='"+pessoa.getPessoaCep()+"',"+
+											 " pessoa_fk_cidade='"+pessoa.getPessoaFkCidade()+"',"+
+											 " pessoa_fk_estado='"+pessoa.getPessoaFkEstado()+"',"+
+											 " pessoa_bairro='"+pessoa.getPessoaBairro()+"',"+
+											 " pessoa_tipo='"+pessoa.getPessoaTipo()+"'"+
+											 " WHERE pessoa_fk_usuario='"+pessoa.getPessoaFkUsuario()+"'");
+			ps.executeUpdate();
+			ps.close();
+            return 1;
+		}catch(SQLException e){
+			e.printStackTrace();
+			return 0;
+		}
 	}
 }
