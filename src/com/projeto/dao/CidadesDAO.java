@@ -19,7 +19,7 @@ private List<Cidade> cidades = new ArrayList<Cidade>();
 	    	Connection connection = new ConexaoBD().getConexao();
 	    	System.out.println("Conexao aberta!");
 	        Statement statement = connection.createStatement();
-	        String sql = "SELECT cid_pk_id, cid_nome, cid_fk_estado FROM sistema.cidade cid, sistema.estado est where cid.cid_pk_id = est.estado_pk_id;";
+	        String sql = "SELECT cid_pk_id, cid_nome, cid_fk_estado FROM sistema.cidade";
 	        ResultSet resultSet = statement.executeQuery(sql);
 	        while (resultSet.next()) {
 	        	Cidade cidade = new Cidade();

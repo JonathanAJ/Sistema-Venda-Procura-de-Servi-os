@@ -85,8 +85,9 @@ public class UsuariosDAO {
 					/*
 					 * Insere Usuário 
 					 */
-					ps = connection.prepareStatement("INSERT INTO sistema.usuario (user_nome, user_senha, user_status)"+
-													 " VALUES (?,?,?)");
+		        	String sql = "INSERT INTO sistema.usuario (user_nome, user_senha, user_status)"+
+							 	 " VALUES (?,?,?)";
+					ps = connection.prepareStatement(sql);
 					ps.setString(1, login);
 					ps.setString(2, senha);
 					ps.setBoolean(3, true);
@@ -98,8 +99,10 @@ public class UsuariosDAO {
 					Usuario user = new Usuario();
 					user = this.getUsuario(login, senha);
 					int user_pk_id = user.getUserPkId();
-		            ps = connection.prepareStatement("INSERT INTO sistema.pessoa (pessoa_fk_usuario, pessoa_email)"+
-		            								 "VALUES (?,?)");
+					sql = "INSERT INTO sistema.pessoa (pessoa_fk_usuario, pessoa_email,"+
+					" pessoa_sexo, pessoa_nome_completo, pessoa_cpf, pessoa_telefone, pessoa_cep, pessoa_bairro, pessoa_tipo)"+
+					" VALUES (?,?,'','','','','','',0)";
+		            ps = connection.prepareStatement(sql);
 		            ps.setInt(1, user_pk_id);
 		            ps.setString(2, email);
 					ps.executeUpdate();
