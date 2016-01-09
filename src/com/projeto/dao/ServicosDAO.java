@@ -1,6 +1,7 @@
 package com.projeto.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -44,5 +45,57 @@ private List<Servicos> servicos = new ArrayList<Servicos>();
 	        return null;
 	    }
 	}
+	
+	public int atualizarServico(Servicos servico){
+		try{
+        	Connection connection = new ConexaoBD().getConexao();
+        	PreparedStatement ps = null;
+			/*
+			 * Atualiza servico 
+			 */
+			ps = connection.prepareStatement("UPDATE sistema.servicos SET"+
+											 " serv_nome='"+servico.getServNome()+"',"+
+											 " serv_descricao='"+servico.getServDescricao()+"',"+
+											 " serv_valor='"+servico.getServValor()+"',"+
+											 " serv_fk_categ1='"+servico.getServFkCateg1()+"',"+
+											 " serv_fk_categ2='"+servico.getServFkCateg2()+"'"+
+											 " WHERE serv_fk_usuario='"+servico.getServFkUsuario()+"'");
+			ps.executeUpdate();
+			ps.close();
+            return 1;
+		}catch(SQLException e){
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public int criarServico(String servicoNome, String servicoDescricao, String servicoValor, int servicoCateg1, int servicoCateg2){
+		
+			try{
 
-}
+		        	Connection connection = new ConexaoBD().getConexao();
+		        	PreparedStatement ps = null;
+		        	
+					/*
+					 * Insere Usuário 
+					 */
+					ps = connection.prepareStatement("INSERT INTO sistema.servicos (serv_nome, serv_descricao, serv_valor, serv_fk_categ1, serv_fk_categ2)"+
+													 " VALUES (?,?,?,?,?)");
+					ps.setString(1, servicoNome);
+					ps.setString(2, servicoDescricao);
+					ps.setString(3, servicoValor);
+					ps.setInt(4, servicoCateg1);
+					ps.setInt(5, servicoCateg2);
+					ps.executeUpdate();
+					ps.close();
+					connection.close();
+		            return 1;
+				}catch(SQLException e){
+					e.printStackTrace();
+					return 0;
+				}
+		}
+		
+	}
+
+

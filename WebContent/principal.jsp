@@ -25,7 +25,7 @@
 			<%@ include file="include-tabs/conta.jsp" %>
 	    </div>
 	    <div id="test4" class="col s12">
-			<h4 class="indigo-text text-lighten-2 center-align">Aba 4</h4>
+			<%@ include file="include-tabs/criaServico.jsp" %>
 		</div>
 	</div>
 </div>
