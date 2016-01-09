@@ -101,7 +101,7 @@ $(document).ready(function(){
         	var $pessoaEmail = $('#pessoaEmail');
         	var $pessoaTelefone = $('#pessoaTelefone');
         	var $pessoaSexo = $('#pessoaSexo');
-        	var $pessoaTipo = $('#pessoaTipo');
+        	var $pessoaTipo = $('#pessoaTipo option:selected');
         	var $pessoaDoc = $('#pessoaDoc');
         	var $pessoaCep = $('#pessoaCep');
         	var $pessoaBairro = $('#pessoaBairro');
@@ -111,6 +111,7 @@ $(document).ready(function(){
         	$pessoaEstado.val();
         	console.log($pessoaCidade.val());
         	console.log($pessoaEstado.val());
+        	console.log($pessoaTipo.val());
         	console.log($pessoaSexo.val());
         	
         	$.ajax({
