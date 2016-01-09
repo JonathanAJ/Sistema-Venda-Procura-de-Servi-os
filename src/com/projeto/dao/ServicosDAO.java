@@ -46,6 +46,35 @@ private List<Servicos> servicos = new ArrayList<Servicos>();
 	    }
 	}
 	
+	public Servicos getServicos(int id){
+		try {
+	    	Connection connection = new ConexaoBD().getConexao();
+	    	System.out.println("Conexao aberta!");
+	        Statement statement = connection.createStatement();
+	        String sql = "SELECT * FROM sistema.servicos WHERE serv_pk_id='" + id + "'";
+	        ResultSet resultSet = statement.executeQuery(sql);
+        	Servicos serv = new Servicos();
+	        while (resultSet.next()) {
+	        	serv.setServPkId(resultSet.getLong("serv_pk_id"));
+	        	serv.setServNome(resultSet.getString("serv_nome"));
+	        	serv.setServDescricao(resultSet.getString("serv_descricao"));
+	        	serv.setServValor(resultSet.getString("serv_valor"));
+	        	serv.setServImagem(resultSet.getString("serv_imagem"));
+	        	serv.setServFkCateg1(resultSet.getInt("serv_fk_categ1"));
+	        	serv.setServFkCateg2(resultSet.getInt("serv_fk_categ2"));
+	        	serv.setServFkUsuario(resultSet.getInt("serv_fk_usuario"));
+	        }
+	        resultSet.close();
+	        statement.close();
+	        connection.close();
+	        return serv;
+	        		
+	    } catch (SQLException ex) {
+	        System.out.println("Erro no SQL: "+ex);
+	        return null;
+	    }
+	}
+	
 	public int atualizarServico(Servicos servico){
 		try{
         	Connection connection = new ConexaoBD().getConexao();
@@ -69,31 +98,32 @@ private List<Servicos> servicos = new ArrayList<Servicos>();
 		}
 	}
 	
-	public int criarServico(String servicoNome, String servicoDescricao, String servicoValor, int servicoCateg1, int servicoCateg2){
-		
+	public int criarServico(Servicos servico){
 			try{
-
-		        	Connection connection = new ConexaoBD().getConexao();
-		        	PreparedStatement ps = null;
-		        	
-					/*
-					 * Insere Usuário 
-					 */
-					ps = connection.prepareStatement("INSERT INTO sistema.servicos (serv_nome, serv_descricao, serv_valor, serv_fk_categ1, serv_fk_categ2)"+
-													 " VALUES (?,?,?,?,?)");
-					ps.setString(1, servicoNome);
-					ps.setString(2, servicoDescricao);
-					ps.setString(3, servicoValor);
-					ps.setInt(4, servicoCateg1);
-					ps.setInt(5, servicoCateg2);
-					ps.executeUpdate();
-					ps.close();
-					connection.close();
-		            return 1;
-				}catch(SQLException e){
-					e.printStackTrace();
-					return 0;
-				}
+	        	Connection connection = new ConexaoBD().getConexao();
+	        	PreparedStatement ps = null;	
+				/*
+				 * Insere Usuário 
+				 */
+	        	String sql = "INSERT INTO sistema.servicos (serv_nome, serv_descricao, serv_valor,"+
+	        				 " serv_fk_categ1, serv_fk_categ2, serv_fk_usuario, serv_imagem)"+
+						 	 " VALUES (?,?,?,?,?,?,?)";
+				ps = connection.prepareStatement(sql);
+				ps.setString(1, servico.getServNome());
+				ps.setString(2, servico.getServDescricao());
+				ps.setString(3, servico.getServValor());
+				ps.setInt(4, servico.getServFkCateg1());
+				ps.setInt(5, servico.getServFkCateg2());
+				ps.setInt(6, servico.getServFkUsuario());
+				ps.setString(7, servico.getServImagem());
+				ps.executeUpdate();
+				ps.close();
+				connection.close();
+	            return 1;
+			}catch(SQLException e){
+				e.printStackTrace();
+				return 0;
+			}
 		}
 		
 	}

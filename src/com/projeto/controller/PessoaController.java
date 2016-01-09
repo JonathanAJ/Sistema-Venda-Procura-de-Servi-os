@@ -23,7 +23,7 @@ public class PessoaController extends HttpServlet {
 		pessoa.setPessoaNomeCompleto(request.getParameter("pessoaNome"));
 		pessoa.setPessoaEmail(request.getParameter("pessoaEmail"));
 		pessoa.setPessoaCep(request.getParameter("pessoaCep"));
-		pessoa.setPessoaCpf(request.getParameter("pessoaDoc"));
+		pessoa.setPessoaDoc(request.getParameter("pessoaDoc"));
 		pessoa.setPessoaBairro(request.getParameter("pessoaBairro"));
 		pessoa.setPessoaFkCidade(Integer.parseInt(request.getParameter("pessoaCidade")));
 		pessoa.setPessoaFkEstado(Integer.parseInt(request.getParameter("pessoaEstado")));

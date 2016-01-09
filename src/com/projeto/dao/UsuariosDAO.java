@@ -71,7 +71,36 @@ public class UsuariosDAO {
         }
         return null;
     }
-	
+
+	public Usuario getUsuario(int id){
+        try{
+        	Connection connection = new ConexaoBD().getConexao();
+        	PreparedStatement ps = null;
+        	ResultSet rs = null;
+        	
+            ps = connection.prepareStatement("SELECT * FROM sistema.usuario "
+            		+ "WHERE user_status = true AND user_pk_id = ?");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                Usuario user = new Usuario();
+                user.setUserPkId(rs.getInt("user_pk_id"));
+                user.setLogin(rs.getString("user_nome"));
+                user.setUserStatus(rs.getBoolean("user_status"));
+                user.setDataDesativacao(rs.getDate("user_data_desativacao"));
+                if(user.getDataDesativacao()==null){
+                    return user;
+                }
+            }
+            rs.close();
+            ps.close();
+            connection.close();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 	public int criarUsuario(String login, String email, String senha){
 		/*
 		 * Confere se o usuário já existe
@@ -100,7 +129,7 @@ public class UsuariosDAO {
 					user = this.getUsuario(login, senha);
 					int user_pk_id = user.getUserPkId();
 					sql = "INSERT INTO sistema.pessoa (pessoa_fk_usuario, pessoa_email,"+
-					" pessoa_sexo, pessoa_nome_completo, pessoa_cpf, pessoa_telefone, pessoa_cep, pessoa_bairro, pessoa_tipo)"+
+					" pessoa_sexo, pessoa_nome_completo, pessoa_doc, pessoa_telefone, pessoa_cep, pessoa_bairro, pessoa_tipo)"+
 					" VALUES (?,?,'','','','','','',0)";
 		            ps = connection.prepareStatement(sql);
 		            ps.setInt(1, user_pk_id);

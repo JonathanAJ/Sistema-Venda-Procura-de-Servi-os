@@ -10,7 +10,7 @@
 	Pessoa pessoa = pessoaDao.getPessoa(userConta.getUserPkId());
 %>
 <div class="row">
-    <form class="col s122">
+    <form class="col s12">
       <div class="row">
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
@@ -59,7 +59,7 @@
         </div>
         <div class="input-field col s12 m3">
           <i class="material-icons prefix">assignment</i>
-          <input id="pessoaDoc" type="text" class="validate" value="<%=pessoa.getPessoaCpf()%>">
+          <input id="pessoaDoc" type="text" class="validate" value="<%=pessoa.getPessoaDoc()%>">
           <label for="pessoaDoc">CPF/CNPJ:</label>
         </div>
       </div>

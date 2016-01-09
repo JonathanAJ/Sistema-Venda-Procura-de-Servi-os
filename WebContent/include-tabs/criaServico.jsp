@@ -1,22 +1,10 @@
 <div class="row">
-    <form class="col s122">
+    <form id="formCriaServico" class="col s12">
       <div class="row">
         <div class="input-field col s12 m6">
-          <i class="material-icons prefix">account_circle</i>
+          <i class="material-icons prefix">loyalty</i>
           <input id="servicoNome" type="text">
           <label for="servicoNome">Nome do Serviço:</label>
-        </div>
-        <div class="input-field col s12 m6">
-          <i class="material-icons prefix">account_circle</i>
-          <textarea id="servicoDescricao"></textarea>
-          <label for="servicoDescricao">Descrição do Serviço:</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12 m3">
-          <i class="material-icons prefix">contact_phone</i>
-          <input id="servicoValor" type="text"  >
-          <label for="servicoValor">Valor:</label>
         </div>
         <div class="input-field col s12 m3">
 		    <select id="servicoCateg1">
@@ -34,12 +22,31 @@
 		    </select>
 		    <label>Categoria 2</label>
         </div>
+        <div class="input-field col s12 m6">
+          <i class="material-icons prefix">contact_phone</i>
+          <input id="servicoValor" type="text"  >
+          <label for="servicoValor">Valor:</label>
+        </div>
+	    <div class="file-field input-field col s12 m6">
+	      <div class="btn">
+	        <span>Imagem</span>
+	        <input type="file">
+	      </div>
+	      <div class="file-path-wrapper">
+	        <input id="servicoImg" class="file-path validate" type="text">
+	      </div>
+	    </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">assignment</i>
+          <textarea id="servicoDescricao" class="materialize-textarea"></textarea>
+          <label for="servicoDescricao">Descrição do Serviço:</label>
+        </div>
       </div>
     </form>
 	<div class="row">
 		<div class="col s12">
 			<a id="cadastrarServico" class="btn waves-effect waves-light blue align-right">
-				Salvar alterações
+				Criar novo Serviço
 				<i class="material-icons right">send</i>
 			</a>
 		</div>

@@ -152,41 +152,31 @@ $(document).ready(function(){
         	var $servicoValor = $('#servicoValor');
         	var $servicoCateg1 = $('#servicoCateg1 option:selected');
         	var $servicoCateg2 = $('#servicoCateg2 option:selected');
-        	$servicoCateg1.val();
-        	$servicoCateg2.val();
-        	console.log($servicoCateg1.val());
-        	console.log($servicoCateg2.val());
+        	var $servicoImg = $('#servicoImg');
         	
-    	var bt = $("#cadastrarServico");
-    	if(!bt.hasClass('disabled')){
-        	bt.addClass("disabled");
-        	var $servicoNome = $('#servicoNome');
-        	var $servicoDescricao = $('#servicoDescricao');
-        	var $servicoValor = $('#servicoValor');
-        	var $servicoCateg1 = $('#servicoCateg1');
-        	var $servicoCateg2 = $('#servicoCateg2');
-        
-	        	$.ajax({
-	    		  method: "POST",
-	    		  url: "ServicoController",
-	    		  data: {acao: "criar",
-	    			  	 servNome: $servicoNome.val(),
-	    			  	 servDescricao: $servicoDescricao.val(),
-	    			  	 servValor: $servicoValor.val(),
-	    			  	 servCateg1 :$servicoCateg1.val(),
-	    			  	 servCateg2 :$servicoCateg2.val()},
-	    		  beforeSend: function() {
-	    			  
-	    		  }
-	    		}).done(function( msg ) {
-	    			if(msg=="1"){
-	    				Materialize.toast('Serviço '+$servicoNome.val()+' foi cadastrado com sucesso!', 4000);
-	    			}else{
-	    				Materialize.toast('Houve algo errado com a execução!', 4000);
-	    			}
-    				bt.removeClass("disabled");
-	        	});
-        	}
+        	$.ajax({
+    		  method: "POST",
+    		  url: "ServicoController",
+    		  data: {acao: "criar",
+    			  	 servNome: $servicoNome.val(),
+    			  	 servDescricao: $servicoDescricao.val(),
+    			  	 servValor: $servicoValor.val(),
+    			  	 servCateg1: $servicoCateg1.val(),
+    			  	 servCateg2: $servicoCateg2.val(),
+    			  	 servImagem: $servicoImg.val()},
+    		  beforeSend: function() {
+    			  
+    		  }
+    		}).done(function( msg ) {
+    			if(msg=="1"){
+    				Materialize.toast('Serviço '+$servicoNome.val()+' foi cadastrado com sucesso!', 4000);
+    				$('ul.tabs').tabs('select_tab', 'test2');
+    				$("#formCriaServico")[0].reset();
+    			}else{
+    				Materialize.toast('Houve algo errado com a execução!', 4000);
+    			}
+				bt.removeClass("disabled");
+        	});
     	}
     });
 });

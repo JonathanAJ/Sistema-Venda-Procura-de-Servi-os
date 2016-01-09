@@ -5,8 +5,7 @@ public class Pessoa {
 	private Long pessoaPkId;
 	private String pessoaNomeCompleto;
 	private String pessoaSexo;
-	private String pessoaCpf;
-	private String pessoaCnpj;
+	private String pessoaDoc;
 	private String pessoaEmail;
 	private String pessoaTelefone;
 	private String pessoaCep;
@@ -44,20 +43,12 @@ public class Pessoa {
 		this.pessoaSexo = pessoaSexo;
 	}
 
-	public String getPessoaCpf() {
-		return pessoaCpf;
+	public String getPessoaDoc() {
+		return pessoaDoc;
 	}
 
-	public void setPessoaCpf(String pessoaCpf) {
-		this.pessoaCpf = pessoaCpf;
-	}
-	
-	public String getPessoaCnpj() {
-		return pessoaCnpj;
-	}
-
-	public void setPessoaCnpj(String pessoaCnpj) {
-		this.pessoaCnpj = pessoaCnpj;
+	public void setPessoaDoc(String pessoaDoc) {
+		this.pessoaDoc = pessoaDoc;
 	}
 
 	public String getPessoaEmail() {

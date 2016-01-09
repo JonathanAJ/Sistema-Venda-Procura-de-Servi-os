@@ -20,15 +20,14 @@ private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	    	Connection connection = new ConexaoBD().getConexao();
 	    	System.out.println("Conexao aberta!");
 	        Statement statement = connection.createStatement();
-	        String sql = "SELECT pessoa_pk_id, pessoa_nome_completo, pessoa_sexo, pessoa_cpf, pessoa_email, pessoa_telefone, pessoa_cep, pessoa_fk_cidade, pessoa_fk_estado, pessoa_fk_usuario, pessoa_bairro, pessoa_cnpj, pessoa_tipo FROM sistema.pessoa person, sistema.cidade cid, sistema.estado est, sistema.usuario usuario where person.pessoa_fk_cidade = cid.cid_pk_id and person.pessoa_fk_estado = est.estado_pk_id and person.pessoa_fk_usuario = usuario.user_pk_id";
+	        String sql = "SELECT pessoa_pk_id, pessoa_nome_completo, pessoa_sexo, pessoa_doc, pessoa_email, pessoa_telefone, pessoa_cep, pessoa_fk_cidade, pessoa_fk_estado, pessoa_fk_usuario, pessoa_bairro, pessoa_tipo FROM sistema.pessoa person, sistema.cidade cid, sistema.estado est, sistema.usuario usuario where person.pessoa_fk_cidade = cid.cid_pk_id and person.pessoa_fk_estado = est.estado_pk_id and person.pessoa_fk_usuario = usuario.user_pk_id";
 	        ResultSet resultSet = statement.executeQuery(sql);
 	        while (resultSet.next()) {
 	        	Pessoa pessoa = new Pessoa();
 	        	pessoa.setPessoaPkId(resultSet.getLong("pessoa_pk_id"));
 	        	pessoa.setPessoaNomeCompleto(resultSet.getString("pessoa_nome_completo"));
 	        	pessoa.setPessoaSexo(resultSet.getString("pessoa_sexo"));
-	        	pessoa.setPessoaCpf(resultSet.getString("pessoa_cpf"));
-	        	pessoa.setPessoaCnpj(resultSet.getString("pessoa_cnpj"));
+	        	pessoa.setPessoaDoc(resultSet.getString("pessoa_doc"));
 	        	pessoa.setPessoaEmail(resultSet.getString("pessoa_email"));
 	        	pessoa.setPessoaTelefone(resultSet.getString("pessoa_telefone"));
 	        	pessoa.setPessoaCep(resultSet.getString("pessoa_cep"));
@@ -57,9 +56,9 @@ private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	    	System.out.println("Conexao aberta!");
 	        Statement statement = connection.createStatement();
 	        String sql = "SELECT pessoa_pk_id, pessoa_nome_completo, pessoa_sexo,"+
-	        			 " pessoa_cpf, pessoa_email, pessoa_telefone, pessoa_cep,"+
+	        			 " pessoa_doc, pessoa_email, pessoa_telefone, pessoa_cep,"+
 	        			 " pessoa_fk_cidade, pessoa_fk_estado, pessoa_fk_usuario,"+
-	        			 " pessoa_bairro, pessoa_cnpj, pessoa_tipo"+
+	        			 " pessoa_bairro, pessoa_tipo"+
 	        			 " FROM sistema.pessoa WHERE pessoa_fk_usuario='"+fk_usuario+"'";
 	        
 	        ResultSet resultSet = statement.executeQuery(sql);
@@ -70,8 +69,7 @@ private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	        	pessoa.setPessoaPkId(resultSet.getLong("pessoa_pk_id"));
 	        	pessoa.setPessoaNomeCompleto(resultSet.getString("pessoa_nome_completo"));
 	        	pessoa.setPessoaSexo(resultSet.getString("pessoa_sexo"));
-	        	pessoa.setPessoaCpf(resultSet.getString("pessoa_cpf"));
-	        	pessoa.setPessoaCnpj(resultSet.getString("pessoa_cnpj"));
+	        	pessoa.setPessoaDoc(resultSet.getString("pessoa_doc"));
 	        	pessoa.setPessoaEmail(resultSet.getString("pessoa_email"));
 	        	pessoa.setPessoaTelefone(resultSet.getString("pessoa_telefone"));
 	        	pessoa.setPessoaCep(resultSet.getString("pessoa_cep"));
@@ -104,7 +102,7 @@ private List<Pessoa> pessoas = new ArrayList<Pessoa>();
         	String sql = "UPDATE sistema.pessoa SET"+
 					 " pessoa_nome_completo='"+pessoa.getPessoaNomeCompleto()+"',"+
 					 " pessoa_sexo='"+pessoa.getPessoaSexo()+"',"+
-					 " pessoa_cpf='"+pessoa.getPessoaCpf()+"',"+
+					 " pessoa_doc='"+pessoa.getPessoaDoc()+"',"+
 					 " pessoa_email='"+pessoa.getPessoaEmail()+"',"+
 					 " pessoa_telefone='"+pessoa.getPessoaTelefone()+"',"+
 					 " pessoa_cep='"+pessoa.getPessoaCep()+"',"+
