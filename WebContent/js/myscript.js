@@ -154,29 +154,46 @@ $(document).ready(function(){
         	var $servicoCateg2 = $('#servicoCateg2 option:selected');
         	var $servicoImg = $('#servicoImg');
         	
-        	$.ajax({
-    		  method: "POST",
-    		  url: "ServicoController",
-    		  data: {acao: "criar",
-    			  	 servNome: $servicoNome.val(),
-    			  	 servDescricao: $servicoDescricao.val(),
-    			  	 servValor: $servicoValor.val(),
-    			  	 servCateg1: $servicoCateg1.val(),
-    			  	 servCateg2: $servicoCateg2.val(),
-    			  	 servImagem: $servicoImg.val()},
-    		  beforeSend: function() {
-    			  
-    		  }
-    		}).done(function( msg ) {
-    			if(msg=="1"){
-    				Materialize.toast('Serviço '+$servicoNome.val()+' foi cadastrado com sucesso!', 4000);
-    				$('ul.tabs').tabs('select_tab', 'test2');
-    				$("#formCriaServico")[0].reset();
-    			}else{
-    				Materialize.toast('Houve algo errado com a execução!', 4000);
-    			}
+        	if($servicoNome.val()=="" || $servicoNome.val().length<10){
+        		$servicoNome.addClass("invalid");
 				bt.removeClass("disabled");
-        	});
+				
+        	}else if($servicoCateg1.val()=="0"){
+				bt.removeClass("disabled");
+				
+        	}else if($servicoValor.val()==""){
+        		$servicoValor.addClass("invalid");
+				bt.removeClass("disabled");
+				
+        	}else if($servicoDescricao.val().length<25){
+        		$servicoDescricao.addClass("invalid");
+				bt.removeClass("disabled");
+				
+        	}else{
+	        	$.ajax({
+	    		  method: "POST",
+	    		  url: "ServicoController",
+	    		  data: {acao: "criar",
+	    			  	 servNome: $servicoNome.val(),
+	    			  	 servDescricao: $servicoDescricao.val(),
+	    			  	 servValor: $servicoValor.val(),
+	    			  	 servCateg1: $servicoCateg1.val(),
+	    			  	 servCateg2: $servicoCateg2.val(),
+	    			  	 servImagem: $servicoImg.val()},
+	    		  beforeSend: function() {
+	    			  
+	    		  }
+	    		}).done(function( msg ) {
+	    			if(msg=="1"){
+	    				Materialize.toast('Serviço '+$servicoNome.val()+' foi cadastrado com sucesso!', 4000);
+	    				$('ul.tabs').tabs('select_tab', 'test2');
+	    				$("#formCriaServico")[0].reset();
+	    			}else{
+	    				Materialize.toast('Houve algo errado com a execução!', 4000);
+	    			}
+					bt.removeClass("disabled");
+	        	});
+        	}
     	}
     });
 });

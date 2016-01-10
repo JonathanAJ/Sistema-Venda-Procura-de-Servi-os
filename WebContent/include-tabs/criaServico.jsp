@@ -3,16 +3,16 @@
       <div class="row">
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">loyalty</i>
-          <input id="servicoNome" type="text">
-          <label for="servicoNome">Nome do Serviço:</label>
+          <input id="servicoNome" type="text" maxlength="80">
+          <label for="servicoNome" data-error="Mínimo 10 dígitos">Nome do Serviço:</label>
         </div>
         <div class="input-field col s12 m3">
 		    <select id="servicoCateg1">
-		      <option value="0" disabled selected>Selecione</option>
+		      <option value="0" disabled selected>Selecione *</option>
 		      <option value="1">Estética</option>
 		      <option value="2">Esportes</option>
 		    </select>
-		    <label>Categoria 1</label>
+		    <label data-error="Obrigatório">Categoria 1</label>
         </div>
         <div class="input-field col s12 m3">
 		    <select id="servicoCateg2">
@@ -25,7 +25,7 @@
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">contact_phone</i>
           <input id="servicoValor" type="text"  >
-          <label for="servicoValor">Valor:</label>
+          <label for="servicoValor" data-error="Valor inválido">Valor:</label>
         </div>
 	    <div class="file-field input-field col s12 m6">
 	      <div class="btn">
@@ -38,8 +38,8 @@
 	    </div>
         <div class="input-field col s12">
           <i class="material-icons prefix">assignment</i>
-          <textarea id="servicoDescricao" class="materialize-textarea"></textarea>
-          <label for="servicoDescricao">Descrição do Serviço:</label>
+          <textarea id="servicoDescricao" class="materialize-textarea" maxlength="100" length="100"></textarea>
+          <label for="servicoDescricao" data-error="Mínimo 25 dígitos">Descrição do Serviço:</label>
         </div>
       </div>
     </form>
