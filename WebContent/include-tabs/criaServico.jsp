@@ -8,7 +8,7 @@
         </div>
         <div class="input-field col s12 m3">
 		    <select id="servicoCateg1">
-		      <option value="" disabled selected>Selecione</option>
+		      <option value="0" disabled selected>Selecione</option>
 		      <option value="1">Estética</option>
 		      <option value="2">Esportes</option>
 		    </select>
@@ -16,7 +16,7 @@
         </div>
         <div class="input-field col s12 m3">
 		    <select id="servicoCateg2">
-		      <option value="" disabled selected>Selecione</option>
+		      <option value="0" disabled selected>Selecione</option>
 		      <option value="3">Educação</option>
 		      <option value="4">Eventos</option>
 		    </select>

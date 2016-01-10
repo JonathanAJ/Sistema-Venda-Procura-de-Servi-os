@@ -106,14 +106,31 @@ private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 					 " pessoa_email='"+pessoa.getPessoaEmail()+"',"+
 					 " pessoa_telefone='"+pessoa.getPessoaTelefone()+"',"+
 					 " pessoa_cep='"+pessoa.getPessoaCep()+"',"+
-					 " pessoa_fk_cidade='"+pessoa.getPessoaFkCidade()+"',"+
-					 " pessoa_fk_estado='"+pessoa.getPessoaFkEstado()+"',"+
 					 " pessoa_bairro='"+pessoa.getPessoaBairro()+"',"+
 					 " pessoa_tipo='"+pessoa.getPessoaTipo()+"'"+
 					 " WHERE pessoa_fk_usuario='"+pessoa.getPessoaFkUsuario()+"'";
+        	
 			ps = connection.prepareStatement(sql);
 			ps.executeUpdate();
+			
+			String sql2 = "UPDATE sistema.pessoa SET"+
+					 " pessoa_fk_cidade='"+pessoa.getPessoaFkCidade()+"'"+
+					 " WHERE pessoa_fk_usuario='"+pessoa.getPessoaFkUsuario()+"'";
+			
+			if(pessoa.getPessoaFkCidade()!=0){
+				ps = connection.prepareStatement(sql2);
+				ps.executeUpdate();
+			}
+			String sql3 = "UPDATE sistema.pessoa SET"+
+					 " pessoa_fk_estado='"+pessoa.getPessoaFkEstado()+"'"+
+					 " WHERE pessoa_fk_usuario='"+pessoa.getPessoaFkUsuario()+"'";
+			
+			if(pessoa.getPessoaFkEstado()!=0){
+				ps = connection.prepareStatement(sql3);
+				ps.executeUpdate();
+			}
 			ps.close();
+	        connection.close();
             return 1;
 		}catch(SQLException e){
 			e.printStackTrace();

@@ -81,6 +81,7 @@
 		%>
         <div class="input-field col s12 m3">
 		    <select id="pessoaEstado">
+		    	<option value="0">Selecione</option>
 		      <%
 				EstadosDAO estadoDao = new EstadosDAO();
 				List<Estado> estado = estadoDao.getEstados();
@@ -101,6 +102,7 @@
 		</div>
         <div class="input-field col s12 m3">
 		    <select id="pessoaCidade">
+		    	<option value="0">Selecione</option>
 		      <%
 				CidadesDAO cidadeDao = new CidadesDAO();
 				List<Cidade> cidade = cidadeDao.getCidades();

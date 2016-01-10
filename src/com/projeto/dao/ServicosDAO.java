@@ -82,14 +82,32 @@ private List<Servicos> servicos = new ArrayList<Servicos>();
 			/*
 			 * Atualiza servico 
 			 */
-			ps = connection.prepareStatement("UPDATE sistema.servicos SET"+
-											 " serv_nome='"+servico.getServNome()+"',"+
-											 " serv_descricao='"+servico.getServDescricao()+"',"+
-											 " serv_valor='"+servico.getServValor()+"',"+
-											 " serv_fk_categ1='"+servico.getServFkCateg1()+"',"+
-											 " serv_fk_categ2='"+servico.getServFkCateg2()+"'"+
-											 " WHERE serv_fk_usuario='"+servico.getServFkUsuario()+"'");
+        	String sql = "UPDATE sistema.servicos SET"+
+					 " serv_nome='"+servico.getServNome()+"',"+
+					 " serv_descricao='"+servico.getServDescricao()+"',"+
+					 " serv_valor='"+servico.getServValor()+"',"+
+					 " serv_fk_categ1='"+servico.getServFkCateg1()+"',"+
+					 " serv_fk_categ2='"+servico.getServFkCateg2()+"'"+
+					 " WHERE serv_fk_usuario='"+servico.getServFkUsuario()+"'";
+			ps = connection.prepareStatement(sql);
 			ps.executeUpdate();
+			
+			String sql2 = "UPDATE sistema.servicos SET"+
+					 " serv_fk_categ1='"+servico.getServFkCateg1()+"'"+
+					 " WHERE serv_fk_usuario='"+servico.getServFkUsuario()+"'";
+			
+			if(servico.getServFkCateg1()!=0){
+				ps = connection.prepareStatement(sql2);
+				ps.executeUpdate();
+			}
+			String sql3 = "UPDATE sistema.servicos SET"+
+					 " serv_fk_categ2='"+servico.getServFkCateg2()+"'"+
+					 " WHERE serv_fk_usuario='"+servico.getServFkUsuario()+"'";
+			
+			if(servico.getServFkCateg2()!=0){
+				ps = connection.prepareStatement(sql3);
+				ps.executeUpdate();
+			}
 			ps.close();
             return 1;
 		}catch(SQLException e){
@@ -106,19 +124,41 @@ private List<Servicos> servicos = new ArrayList<Servicos>();
 				 * Insere Usuário 
 				 */
 	        	String sql = "INSERT INTO sistema.servicos (serv_nome, serv_descricao, serv_valor,"+
-	        				 " serv_fk_categ1, serv_fk_categ2, serv_fk_usuario, serv_imagem)"+
-						 	 " VALUES (?,?,?,?,?,?,?)";
-				ps = connection.prepareStatement(sql);
+	        				 " serv_fk_usuario, serv_imagem)"+
+						 	 " VALUES (?,?,?,?,?)";
+				ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 				ps.setString(1, servico.getServNome());
 				ps.setString(2, servico.getServDescricao());
 				ps.setString(3, servico.getServValor());
-				ps.setInt(4, servico.getServFkCateg1());
-				ps.setInt(5, servico.getServFkCateg2());
-				ps.setInt(6, servico.getServFkUsuario());
-				ps.setString(7, servico.getServImagem());
+				ps.setInt(4, servico.getServFkUsuario());
+				ps.setString(5, servico.getServImagem());
 				ps.executeUpdate();
+				
+				ResultSet rs = ps.getGeneratedKeys();
+				int ultimoID = 0;
+				if (rs.next()) {
+				    ultimoID = rs.getInt(1);
+				}
+				String sql2 = "UPDATE sistema.servicos SET"+
+						 " serv_fk_categ1='"+servico.getServFkCateg1()+"'"+
+						 " WHERE serv_pk_id='"+ultimoID+"'";
+				
+				if(servico.getServFkCateg1()!=0){
+					ps = connection.prepareStatement(sql2);
+					ps.executeUpdate();
+				}
+				String sql3 = "UPDATE sistema.servicos SET"+
+						 " serv_fk_categ2='"+servico.getServFkCateg2()+"'"+
+						 " WHERE serv_pk_id='"+ultimoID+"'";
+				
+				if(servico.getServFkCateg2()!=0){
+					ps = connection.prepareStatement(sql3);
+					ps.executeUpdate();
+				}
 				ps.close();
 				connection.close();
+				
+				
 	            return 1;
 			}catch(SQLException e){
 				e.printStackTrace();
