@@ -20,7 +20,9 @@
 	<div class="navbar-fixed">
 		<nav class="teal lighten-2">
 			<div class="nav-wrapper container">
-				<a href="/Sistema-Venda-Procura-de-Servicos/" class="brand-logo center">ServLibeR</a>
+				<a href="/Sistema-Venda-Procura-de-Servicos/" class="brand-logo center">
+					<img src="img/logo.png" width="160"/>
+				</a>
 				<%
 				// Se não existir usuário logado
 				if(user==null){
