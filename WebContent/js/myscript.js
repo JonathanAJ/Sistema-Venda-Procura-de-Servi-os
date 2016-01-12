@@ -11,8 +11,7 @@ $(document).ready(function(){
         	bt.addClass("disabled");
         	var $senha = $('#senha');
         	var $login = $('#login');
-        	var $favoritoId = 0;
-        	$favoritoId = $("#pegarFavorito").attr("data-id-servico");
+        	var $favoritoId = $favoritoId = $("#pegarFavorito").attr("data-id-servico");
         	console.log($favoritoId);
         	if($login.val()==""){
         		$login.addClass("invalid");
@@ -33,7 +32,7 @@ $(document).ready(function(){
 	    		}).done(function( msg ) {
 	    			console.log(msg);
 	    			if(msg=="1"){
-	    				if($favoritoId!=0){
+	    				if($favoritoId!=undefined){
 		    				window.location.href = "servico.jsp?id="+$favoritoId;
 	    				}else{
 		    				window.location.href = "principal.jsp";
