@@ -14,6 +14,9 @@
 .card .card-image img {
     height: 250px;
 }
+.card .card-content {
+    height: 110px;
+}
 .dropdown-content {
     margin-top: 64px;
 }

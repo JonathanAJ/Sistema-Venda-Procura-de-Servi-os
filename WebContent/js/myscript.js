@@ -11,7 +11,9 @@ $(document).ready(function(){
         	bt.addClass("disabled");
         	var $senha = $('#senha');
         	var $login = $('#login');
-        	
+        	var $favoritoId = 0;
+        	$favoritoId = $("#pegarFavorito").attr("data-id-servico");
+        	console.log($favoritoId);
         	if($login.val()==""){
         		$login.addClass("invalid");
 				bt.removeClass("disabled");
@@ -31,7 +33,11 @@ $(document).ready(function(){
 	    		}).done(function( msg ) {
 	    			console.log(msg);
 	    			if(msg=="1"){
-	    				window.location.href = "principal.jsp";
+	    				if($favoritoId!=0){
+		    				window.location.href = "servico.jsp?id="+$favoritoId;
+	    				}else{
+		    				window.location.href = "principal.jsp";
+	    				}
 	    			}else{
 	    				bt.removeClass("disabled");
 	    				Materialize.toast('Login ou senha incorreto tente novamente!', 4000);
@@ -194,6 +200,31 @@ $(document).ready(function(){
 					bt.removeClass("disabled");
 	        	});
         	}
+    	}
+    });
+    
+  //Cadastrar Favorito
+    $("#cadastrarFavorito").click(function(){
+    	var bt = $("#cadastrarFavorito");
+    	if(!bt.hasClass('disabled')){
+        	bt.addClass("disabled");
+        	var $favoritoId = bt.attr("data-id-servico");
+        	$.ajax({
+    		  method: "POST",
+    		  url: "FavoritoController",
+    		  data: {acao: "favoritar",
+    			  	 favoritoId: $favoritoId},
+    		  beforeSend: function() {
+    			  
+    		  }
+    		}).done(function( msg ) {
+    			if(msg=="1"){
+    				Materialize.toast('Esse serviço foi adicionado aos seus favoritos', 4000);
+    				bt.attr("data-tooltip", "Você já favoritou esse serviço!");
+    			}else{
+    				Materialize.toast('Houve algo errado com a execução!', 4000);
+    			}
+        	});
     	}
     });
 });

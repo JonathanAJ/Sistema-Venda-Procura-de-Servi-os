@@ -39,16 +39,59 @@
     </div>
     <div class="col s6">
     	<div class="row">
-			<div class="chip uppercase">
-				Aluguel
-			</div>
-			<div class="chip uppercase">
-				Aluguel
-			</div>
-    		<div class="col s12">
+	    	<div class="col s8">
+				<div class="chip uppercase">
+					Aluguel
+				</div>
+				<div class="chip uppercase">
+					Aluguel
+				</div>
+	    	</div>
+    		<div class="col s8">
 		    	<h3 class="blue-text">
 		    		<i class="material-icons">label_outline</i> R$ <%=servico.getServValor()%>
 		    	</h3>
+    		</div>
+    		<div class="col s4 mg-tp-15">
+	    		<%
+	    			if(session.getAttribute("Usuario")==null){
+	    		%>
+			    	<a id="pegarFavorito"
+			    	   href="#loginModal"
+			    	   data-id-servico="<%=servico.getServPkId()%>"
+			    	   class="modal-trigger btn-floating btn-large waves-effect waves-light red tooltipped" 
+			    	   data-position="bottom" data-delay="50"
+			    	   data-tooltip="Logue-se para favoritar!">
+			    		<i class="material-icons">grade</i>
+			    	</a>
+	    		<%		
+	    			}else{
+	    				FavoritosDAO favoritos = new FavoritosDAO();
+	    				Usuario userFavorito = (Usuario) session.getAttribute("Usuario");
+	    				boolean res = favoritos.getFavoritos(servico.getServPkId(), userFavorito.getUserPkId());
+	    				if(res){
+	    		%>
+			    	<a id="cadastrarFavorito"
+			    	   data-id-servico="<%=servico.getServPkId()%>"
+			    	   class="btn-floating btn-large waves-effect waves-light red tooltipped" 
+			    	   data-position="bottom" data-delay="50"
+			    	   data-tooltip="Favoritar!">
+			    		<i class="material-icons">grade</i>
+			    	</a>
+	    		<%
+	    				}else{
+	    		%>
+			    	<a id="cadastrarFavorito"
+			    	   class="btn-floating btn-large waves-effect waves-light red tooltipped disabled" 
+			    	   data-position="bottom" data-delay="50"
+			    	   data-tooltip="Você já favoritou esse serviço!">
+			    		<i class="material-icons">grade</i>
+			    	</a>
+	    		<%
+				
+						}	
+	    			}
+	    		%>
     		</div>
     		<div class="col s8">
 	    		<blockquote>
