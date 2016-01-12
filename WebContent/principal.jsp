@@ -18,13 +18,13 @@
 		<%@ include file="include-tabs/criaServico.jsp" %>
     </div>
     <div id="test2" class="col s12">
-		<h4 class="indigo-text text-lighten-2 center-align">Aba 2</h4>
+		<%@ include file="include-tabs/meusServicos.jsp" %>
 	</div>
     <div id="test3" class="col s12">
 		<%@ include file="include-tabs/conta.jsp" %>
     </div>
     <div id="test4" class="col s12">
-		<h4 class="indigo-text text-lighten-2 center-align">Aba 4</h4>
+		<%@ include file="include-tabs/favoritos.jsp" %>
 	</div>
 	</div>
 </div>

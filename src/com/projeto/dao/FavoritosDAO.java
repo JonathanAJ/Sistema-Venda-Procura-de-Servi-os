@@ -71,7 +71,34 @@ private List<Favoritos> favoritos = new ArrayList<Favoritos>();
 	        return false;
 	    }
 	}
-
+	
+	public List<Favoritos> getFavoritos(int idUsuario){
+		try {
+			
+	    	Connection connection = new ConexaoBD().getConexao();
+	        Statement statement = connection.createStatement();
+	        String sql = "SELECT * FROM sistema.favoritos WHERE" +
+	        			 " favorito_fk_usuario='"+idUsuario+"'";
+	        
+	        ResultSet resultSet = statement.executeQuery(sql);
+	        while (resultSet.next()) {
+	        	Favoritos fav = new Favoritos();
+	        	fav.setFavoritoPkId(resultSet.getLong("favorito_pk_id"));
+	        	fav.setFavorFkServ(resultSet.getInt("favorito_fk_serv"));
+	        	fav.setFavoritoFkUsuario(resultSet.getInt("favorito_fk_usuario"));
+	        	favoritos.add(fav);
+	        }
+	        resultSet.close();
+	        statement.close();
+	        connection.close();
+	        return favoritos;
+	        			
+	    } catch (SQLException ex) {
+	        System.out.println("Erro no SQL: "+ex);
+	        return null;
+	    }
+	}
+	
 	public int criarFavorito(int idServico, int idUsuario){
 			try{
 	        	Connection connection = new ConexaoBD().getConexao();
