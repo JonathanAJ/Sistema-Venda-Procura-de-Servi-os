@@ -3,10 +3,10 @@ package com.projeto.controller;
 import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
+
 import com.projeto.dao.*;
+import com.projeto.model.Usuario;
 
 @WebServlet("/UsuarioController")
 public class UsuarioController extends HttpServlet {
@@ -18,15 +18,64 @@ public class UsuarioController extends HttpServlet {
 		String acao = request.getParameter("acao");
 		
 		if(acao.equals("criar")){
+
+			PrintWriter out = response.getWriter();
+			UsuariosDAO userDao = new UsuariosDAO();
+			
 			String login = request.getParameter("login");
 			String email = request.getParameter("email");
 			String senha = request.getParameter("senha");
-			UsuariosDAO user = new UsuariosDAO();
-			String msg = Integer.toString(user.criarUsuario(login, email, senha));
-			PrintWriter out = response.getWriter();
+			
+			
+			String msg = Integer.toString(userDao.criarUsuario(login, email, senha));
+			
+			out = response.getWriter();
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("UTF-8");
 			out.write(msg);
+			
+		}else if(acao.equals("login")){
+
+			PrintWriter out = response.getWriter();
+			UsuariosDAO userDao = new UsuariosDAO();
+			Usuario user = new Usuario();
+			
+			String login = request.getParameter("login");
+			String senha = request.getParameter("senha"); 
+			String lembrarLogin = request.getParameter("lembrar");
+	        
+			user = userDao.getUsuario(login, senha);
+			
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
+			if(user!=null){
+				HttpSession ss = request.getSession(true);
+				ss.setAttribute("Usuario", user);
+				if(lembrarLogin.equals("true")){
+					Cookie cookieLogin = new Cookie("Usuario", user.getLogin());
+					Cookie cookieSenha = new Cookie("Senha", user.getSenha());
+					Cookie cookieLembrar = new Cookie("Lembrar", "true");
+					response.addCookie(cookieLogin);
+					response.addCookie(cookieSenha);
+					response.addCookie(cookieLembrar);
+				}else{
+					Cookie[] cc = request.getCookies();
+					if(cc.length>1){
+						Cookie cookieLogin = new Cookie("Usuario", "");
+						Cookie cookieSenha = new Cookie("Senha", "");
+						Cookie cookieLembrar = new Cookie("Lembrar", "false");
+						response.addCookie(cookieLogin);
+						response.addCookie(cookieSenha);
+						response.addCookie(cookieLembrar);
+					}
+				}
+				out.write("1");
+			}else{
+	    		out.write("0");
+			}
+			
+		}else if(acao.equals("logout")){
+			
 		}
 		
 	}

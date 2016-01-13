@@ -1,3 +1,15 @@
+<%
+	Cookie[] cc = request.getCookies();
+	String login = "";
+	String senha = "";
+	String lembrar = "false";
+	
+	if(cc.length>1){
+		login  = cc[1].getValue();
+		senha  = cc[2].getValue();
+		lembrar  = cc[3].getValue();
+	}
+%>
 		<!-- Modal Estrutura Login-->
 		<div id="loginModal" class="modal">
 			<div class="modal-content">
@@ -8,15 +20,23 @@
 						<div class="row">
 							<div class="input-field col s12 blue-text">
 								<i class="material-icons prefix">account_circle</i>
-								<input id="login" type="text" class="validate" name="login">
+								<input id="login" type="text"
+									   class="validate" name="login"
+									   value="<%=login%>">
 								<label for="login" data-error="Login inválido!">Login</label>
 							</div>
 						</div>
 						<div class="row">
 							<div class="input-field col s12 blue-text">
 								<i class="material-icons prefix">vpn_key</i>
-								<input id="senha" type="password" class="validate" name="senha">
+								<input id="senha" type="password"
+									   class="validate" name="senha"
+									   value="<%=senha%>">
 								<label for="senha" data-error="Senha inválida!">Senha</label>
+							</div>
+							<div class="input-field col s12 blue-text">
+						      <input id="lembrarLogin" type="checkbox" <%=(lembrar.equals("false"))?"":"checked" %>/>
+						      <label for="lembrarLogin">Lembrar-me depois</label>
 							</div>
 						</div>
 					</form>

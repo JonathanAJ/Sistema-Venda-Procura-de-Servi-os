@@ -7,12 +7,15 @@ $(document).ready(function(){
     //Fazendo login
     $("#fazerLogin").click(function(){
     	var bt = $("#fazerLogin");
+
     	if(!bt.hasClass('disabled')){
         	bt.addClass("disabled");
         	var $senha = $('#senha');
         	var $login = $('#login');
         	var $favoritoId = $favoritoId = $("#pegarFavorito").attr("data-id-servico");
-        	console.log($favoritoId);
+        	var $lembrarLogin = $('#lembrarLogin').is(':checked');
+        	console.log($lembrarLogin);
+        	
         	if($login.val()==""){
         		$login.addClass("invalid");
 				bt.removeClass("disabled");
@@ -24,8 +27,11 @@ $(document).ready(function(){
         	}else{
 	        	$.ajax({
 	    		  method: "POST",
-	    		  url: "Login",
-	    		  data: {login: $login.val(), senha: $senha.val()},
+	    		  url: "UsuarioController",
+	    		  data: {acao: "login",
+	    			  	 login: $login.val(),
+	    			  	 senha: $senha.val(),
+	    			  	 lembrar: $lembrarLogin},
 	    		  beforeSend: function() {
 	    			  
 	    		  }
