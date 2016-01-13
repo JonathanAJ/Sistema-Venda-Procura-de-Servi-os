@@ -4,6 +4,8 @@ import java.io.IOException;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import com.projeto.model.Online;
+
 import javax.servlet.annotation.WebServlet;
 
 
@@ -18,6 +20,11 @@ public class Logout extends HttpServlet {
 		
 		if(ss!=null){
 			ss.invalidate();
+			
+			int num = (int) this.getServletContext().getAttribute("Online");
+			num = num - 1;
+			this.getServletContext().setAttribute("Online", num);
+			
 			response.sendRedirect("index.jsp");
 		}
 	}

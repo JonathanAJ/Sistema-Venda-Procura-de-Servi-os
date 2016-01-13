@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import com.projeto.dao.*;
+import com.projeto.model.Online;
 import com.projeto.model.Usuario;
 
 @WebServlet("/UsuarioController")
@@ -40,6 +41,10 @@ public class UsuarioController extends HttpServlet {
 			UsuariosDAO userDao = new UsuariosDAO();
 			Usuario user = new Usuario();
 			
+			int num = (int) this.getServletContext().getAttribute("Online");
+			num = num + 1;
+			this.getServletContext().setAttribute("Online", num);
+			
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha"); 
 			String lembrarLogin = request.getParameter("lembrar");
@@ -49,8 +54,18 @@ public class UsuarioController extends HttpServlet {
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("UTF-8");
 			if(user!=null){
+				/*
+				 * Iniciar a Sessão
+				 */
 				HttpSession ss = request.getSession(true);
 				ss.setAttribute("Usuario", user);
+				/*
+				 * Iniciar contador do contexto
+				 */
+				
+				/*
+				 * Guardar os Cookies 
+				 */
 				if(lembrarLogin.equals("true")){
 					Cookie cookieLogin = new Cookie("Usuario", user.getLogin());
 					Cookie cookieSenha = new Cookie("Senha", user.getSenha());

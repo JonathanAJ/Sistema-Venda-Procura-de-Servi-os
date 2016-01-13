@@ -2,6 +2,10 @@
 <%@ page import="com.projeto.model.*" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+	ServletContext contador = this.getServletContext();
+	if(contador.getAttribute("Online")==null){
+		contador.setAttribute("Online", 0);
+	}
 	Usuario user = (Usuario)session.getAttribute("Usuario");
 %>
 <!DOCTYPE html>
@@ -29,7 +33,7 @@
 				%>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
 			        <li><a href="#cadastrarModal" class="waves-effect modal-trigger"><i class="material-icons tiny left">stars</i>Cadastrar</a></li>
-			        <li><a href="#" class="waves-effect">Sobre</a></li>
+			        <li><a href="#loginSobre" class="waves-effect modal-trigger">Sobre</a></li>
 				</ul>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 			        <li><a href="#loginModal" class="waves-effect modal-trigger"><i class="material-icons tiny left">perm_identity</i>Login</a></li>
@@ -38,7 +42,7 @@
 				}else{
 				%>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
-			        <li><a href="#" class="waves-effect"><i class="material-icons tiny left">stars</i>Sobre</a></li>
+			        <li><a href="#loginSobre" class="waves-effect modal-trigger"><i class="material-icons tiny left">stars</i>Sobre</a></li>
 				</ul>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 				    <!-- Dropdown Trigger -->
