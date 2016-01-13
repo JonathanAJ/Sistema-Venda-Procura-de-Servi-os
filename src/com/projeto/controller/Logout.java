@@ -4,8 +4,6 @@ import java.io.IOException;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import com.projeto.model.Online;
-
 import javax.servlet.annotation.WebServlet;
 
 

@@ -1,13 +1,12 @@
 package com.projeto.controller;
 
 import java.io.*;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import com.projeto.dao.*;
-import com.projeto.model.Online;
-import com.projeto.model.Usuario;
+import com.projeto.model.*;
 
 @WebServlet("/UsuarioController")
 public class UsuarioController extends HttpServlet {
@@ -41,10 +40,6 @@ public class UsuarioController extends HttpServlet {
 			UsuariosDAO userDao = new UsuariosDAO();
 			Usuario user = new Usuario();
 			
-			int num = (int) this.getServletContext().getAttribute("Online");
-			num = num + 1;
-			this.getServletContext().setAttribute("Online", num);
-			
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha"); 
 			String lembrarLogin = request.getParameter("lembrar");
@@ -62,7 +57,9 @@ public class UsuarioController extends HttpServlet {
 				/*
 				 * Iniciar contador do contexto
 				 */
-				
+				int num = (int) this.getServletContext().getAttribute("Online");
+				num = num + 1;
+				this.getServletContext().setAttribute("Online", num);
 				/*
 				 * Guardar os Cookies 
 				 */
