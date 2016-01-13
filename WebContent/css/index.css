@@ -5,7 +5,7 @@
 .card .card-image .card-title {
     padding: 10px;
     width: 100%;
-    background-color: rgba(63,81,181,0.6);
+    background-color: rgba(0,0,0,0.6);
 }
 .card .card-title {
     font-size: 20px;
@@ -14,15 +14,35 @@
 .card .card-image img {
     height: 250px;
 }
+.card .card-content {
+    height: 110px;
+}
 .dropdown-content {
     margin-top: 64px;
 }
+
+input:not([type])+label:after, input[type=text]+label:after, input[type=password]+label:after, input[type=email]+label:after, input[type=url]+label:after, input[type=time]+label:after, input[type=date]+label:after, input[type=datetime-local]+label:after, input[type=tel]+label:after, input[type=number]+label:after, input[type=search]+label:after, textarea.materialize-textarea+label:after {
+    width: 200px;
+}
+
 /*
  * MEU CSS
  */
+body{
+	background-color: #fff;
+}
  
 .mg-tp-15{
 	margin-top: 15px;
+}
+.mg-tp-10{
+	margin-top: 10px;
+}
+.mg-bt-20{
+    margin-bottom: 20px;
+}
+.mg-bt-15{
+	margin-bottom: 15px;
 }
 .mg-bt-5{
 	margin-bottom: 5px;
@@ -34,4 +54,13 @@ span.preco.right {
     font-size: 18px;
     font-weight: 500;
     margin-top: -4px;
+}
+.just{
+	text-align: justify;
+}
+.pd-lf-20{
+	padding-left: 20px;
+}
+.pd-rg-20{
+	padding-right: 20px;
 }

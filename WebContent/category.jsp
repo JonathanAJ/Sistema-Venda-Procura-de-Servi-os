@@ -1,23 +1,34 @@
-<div class="row">
+<%@page import="com.projeto.dao.*"%>
+<%@page import="java.util.*"%>
+<%@page import="com.projeto.model.*"%>
+<div class="row mg-tp-15">
   <div class="col s5 m3">
+  	<h4 class="indigo-text text-lighten-2 center-align">Categorias</h4>
 	<div class="collection uppercase">
-		<a href="#!" class="collection-item indigo-text">Estética</a>
-		<a href="#!" class="collection-item indigo-text">Esportes</a>
-		<a href="#!" class="collection-item indigo-text">Educação</a>
-		<a href="#!" class="collection-item indigo-text">Eventos</a>
-		<a href="#!" class="collection-item indigo-text">Gastronomia</a>
-		<a href="#!" class="collection-item indigo-text">Gráfico</a>
-		<a href="#!" class="collection-item indigo-text">Web</a>
-		<a href="#!" class="collection-item indigo-text">Saúde</a>
-		<a href="#!" class="collection-item indigo-text">Moda</a>
-		<a href="#!" class="collection-item indigo-text">Transportes</a>
-		<a href="#!" class="collection-item indigo-text">Turismo</a>
-		<a href="#!" class="collection-item indigo-text">Suporte</a>
-		<a href="#!" class="collection-item indigo-text">Animais</a>
-		<a href="#!" class="collection-item indigo-text">Segurança</a>
-		<a href="#!" class="collection-item indigo-text">Aluguel</a>
-		<a href="#!" class="collection-item indigo-text">Limpeza</a>
-		<a href="#!" class="collection-item indigo-text">Construção</a>
-		<a href="#!" class="collection-item indigo-text">Outros</a>
+	<%
+		CategoriasDAO catDao = new CategoriasDAO();
+		List<Categoria> categoria = catDao.getCategorias();
+		Iterator<Categoria> i = categoria.iterator();
+		while(i.hasNext()){
+			String cat = i.next().getCategNome();
+			String catParam = request.getParameter("categoria");
+			if(catParam==null || !catParam.equals(cat)){
+	%>
+			<a href="?categoria=<%= cat %>" class="collection-item">
+				<%= cat %>
+				<i class="material-icons tiny right">send</i>
+			</a>
+	<%
+			}
+			else{
+	%>
+			<a href="?categoria=<%= cat %>" class="collection-item active">
+				<%= cat %>
+				<i class="material-icons tiny right">send</i>
+			</a>
+	<%
+			}
+		}
+	%>
 	</div>
   </div>

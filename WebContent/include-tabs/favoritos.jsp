@@ -2,18 +2,22 @@
 <%@page import="com.projeto.model.*" %>
 <%@page import="java.util.*"%>
 
-<div class="col s7 m9">
+<div class="col s12">
 	<div class="row">
 <%
-	String paramCat = request.getParameter("categoria");
-	ServicosDAO servicosDAO = new ServicosDAO();
+	Usuario userFavServ = (Usuario) session.getAttribute("Usuario");
 
-	List<Servicos> servicos = servicosDAO.getServicos();
-	Iterator<Servicos> iServico = servicos.iterator();
-	while(iServico.hasNext()){
-		Servicos servicoIterator = (Servicos) iServico.next();
+	FavoritosDAO favoritosDAO = new FavoritosDAO();
+	List<Favoritos> favorito = favoritosDAO.getFavoritos(userFavServ.getUserPkId());
+	Iterator<Favoritos> iFavorito = favorito.iterator();
+	
+	ServicosDAO servicoDAO = new ServicosDAO();
+	while(iFavorito.hasNext()){
+		Favoritos favoritoIterator = (Favoritos) iFavorito.next();
+		int idServ = favoritoIterator.getFavoritoFkServ();
+		Servicos servicoIterator = servicoDAO.getServicos(idServ);
 %>
-		<div class="col s12 m6">
+		<div class="col s12 m4">
 			<div class="card hoverable">
 				<div class="card-image">
 					<img class="responsive-img" src="http://dpcpa.com/wp-content/uploads/2015/01/thumbnail-default.jpg">
@@ -42,4 +46,3 @@
 %>
 	</div>
 </div>
-</div> <!-- fim linha layout -->

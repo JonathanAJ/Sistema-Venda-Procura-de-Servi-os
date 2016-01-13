@@ -18,6 +18,11 @@ public class Logout extends HttpServlet {
 		
 		if(ss!=null){
 			ss.invalidate();
+			
+			int num = (int) this.getServletContext().getAttribute("Online");
+			num = num - 1;
+			this.getServletContext().setAttribute("Online", num);
+			
 			response.sendRedirect("index.jsp");
 		}
 	}

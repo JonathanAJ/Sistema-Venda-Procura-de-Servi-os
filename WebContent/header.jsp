@@ -2,6 +2,10 @@
 <%@ page import="com.projeto.model.*" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+	ServletContext contador = this.getServletContext();
+	if(contador.getAttribute("Online")==null){
+		contador.setAttribute("Online", 0);
+	}
 	Usuario user = (Usuario)session.getAttribute("Usuario");
 %>
 <!DOCTYPE html>
@@ -18,23 +22,28 @@
 </head>
 <body>
 	<div class="navbar-fixed">
-		<nav class="indigo">
+		<nav class="teal lighten-2">
 			<div class="nav-wrapper container">
-				<a href="/Sistema-Venda-Procura-de-Servicos/" class="brand-logo center">ServLibeR</a>
-				<ul id="nav-mobile" class="left hide-on-med-and-down">
-			        <li><a href="#" class="waves-effect"><i class="material-icons tiny left">stars</i>Cadastrar</a></li>
-			        <li><a href="#" class="waves-effect">Sobre</a></li>
-				</ul>
+				<a href="/Sistema-Venda-Procura-de-Servicos/" class="brand-logo center">
+					<img src="img/logo.png" width="160"/>
+				</a>
 				<%
 				// Se não existir usuário logado
 				if(user==null){
 				%>
+				<ul id="nav-mobile" class="left hide-on-med-and-down">
+			        <li><a href="#cadastrarModal" class="waves-effect modal-trigger"><i class="material-icons tiny left">stars</i>Cadastrar</a></li>
+			        <li><a href="#loginSobre" class="waves-effect modal-trigger">Sobre</a></li>
+				</ul>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 			        <li><a href="#loginModal" class="waves-effect modal-trigger"><i class="material-icons tiny left">perm_identity</i>Login</a></li>
 				</ul>
 				<%
 				}else{
 				%>
+				<ul id="nav-mobile" class="left hide-on-med-and-down">
+			        <li><a href="#loginSobre" class="waves-effect modal-trigger"><i class="material-icons tiny left">stars</i>Sobre</a></li>
+				</ul>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 				    <!-- Dropdown Trigger -->
 				    <li>
@@ -47,7 +56,7 @@
 				<!-- Dropdown Structure -->
 				<ul id="menu-drop" class="dropdown-content">
 					<li class="divider"></li>
-					<li><a href="principal.jsp">Meus serviços</a></li>
+					<li><a href="principal.jsp">Principal</a></li>
 					<li class="divider"></li>
 					<li><a href="Logout">Sair</a></li>
 				</ul>
@@ -57,7 +66,7 @@
 			</div>
 		</nav>
 	</div>
-	<nav class="indigo lighten-2 ">
+	<nav class="indigo lighten-2 z-depth-0">
 		<div class="nav-wrapper container">
 			<form>
 				<div class="input-field">
