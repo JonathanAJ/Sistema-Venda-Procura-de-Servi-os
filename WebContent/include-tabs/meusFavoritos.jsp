@@ -4,6 +4,11 @@
 
 <div class="col s12">
 	<div class="row">
+		<a class="waves-effect waves-light btn right" href="./relatorios/favoritos.jsp" target="blank">
+			<i class="material-icons left">library_books</i>Gerar Relatório
+		</a>
+	</div>
+	<div class="row">
 <%
 	Usuario userFavServ = (Usuario) session.getAttribute("Usuario");
 

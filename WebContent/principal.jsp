@@ -24,7 +24,7 @@
 		<%@ include file="include-tabs/conta.jsp" %>
     </div>
     <div id="test4" class="col s12">
-		<%@ include file="include-tabs/favoritos.jsp" %>
+		<%@ include file="include-tabs/meusFavoritos.jsp" %>
 	</div>
 	</div>
 </div>
