@@ -25,7 +25,7 @@ O ***Sistema de Venda & Procura de Serviços*** idealizado e construído para a 
  - ***Usuário: postgres***
  - ***Senha: (sem senha)***
 
-*Obs¹: Essas configurações podem ser modificado em:*
+*Obs¹: Essas configurações podem ser modificadas em:*
 
 	/src/com/projeto/controller/ConexaoBD.java
 	
