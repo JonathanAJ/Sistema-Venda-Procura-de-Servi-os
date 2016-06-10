@@ -1,6 +1,8 @@
 # Sistema de Venda & Procura de Serviços
 
-![Projeto Logo](/WebContent/img/logo.png)
+<p align="center">
+ <img src="/WebContent/img/logo.png"/>
+</p>
 
 ### Descrição
 O ***Sistema de Venda & Procura de Serviços*** idealizado e construído para a cadeira de ***Programação para Web I*** e ministrada pelo professor *Leonardo Moreira* do curso de Sistemas e Mídias Digitais da UFC, tem um propósito simples de servir como um agregador de classificados de serviços, prestados por profissionais ou amadores.
