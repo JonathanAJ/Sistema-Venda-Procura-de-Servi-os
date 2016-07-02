@@ -26,29 +26,35 @@ public class UsuarioController extends HttpServlet {
 			String email = request.getParameter("email");
 			String senha = request.getParameter("senha");
 			
-			
-			String msg = Integer.toString(userDao.criarUsuario(login, email, senha));
+			String msg = "0";
+			if(!login.isEmpty() && !email.isEmpty() && !senha.isEmpty()){
+				msg = Integer.toString(userDao.criarUsuario(login, email, senha));
+			}
 			
 			out = response.getWriter();
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("UTF-8");
 			out.write(msg);
 			
-		}else if(acao.equals("login")){
+		}
+		else if(acao.equals("login")){
 
 			PrintWriter out = response.getWriter();
 			UsuariosDAO userDao = new UsuariosDAO();
 			Usuario user = new Usuario();
+			user = null;
 			
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha"); 
 			String lembrarLogin = request.getParameter("lembrar");
 	        
-			user = userDao.getUsuario(login, senha);
+			if(!login.isEmpty() && !senha.isEmpty()){
+				user = userDao.getUsuario(login, senha);
+			}
 			
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("UTF-8");
-			if(user!=null){
+			if(user != null){
 				/*
 				 * Iniciar a Sessão
 				 */
@@ -82,11 +88,13 @@ public class UsuarioController extends HttpServlet {
 					}
 				}
 				out.write("1");
-			}else{
+			}
+			else{
 	    		out.write("0");
 			}
 			
-		}else if(acao.equals("logout")){
+		}
+		else if(acao.equals("logout")){
 			
 		}
 		

@@ -6,7 +6,7 @@ public class ConexaoBD {
 	public Connection getConexao() {
 		Connection conexao = null;
 		String usuario = "postgres";
-		String senha = "";
+		String senha = "85539328";
 		String nomeBancoDados = "sistemaServicos";
  
 		try {

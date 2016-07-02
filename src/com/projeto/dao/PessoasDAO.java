@@ -100,33 +100,49 @@ private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 			 * Atualiza Pessoa 
 			 */
         	String sql = "UPDATE sistema.pessoa SET"+
-					 " pessoa_nome_completo='"+pessoa.getPessoaNomeCompleto()+"',"+
-					 " pessoa_sexo='"+pessoa.getPessoaSexo()+"',"+
-					 " pessoa_doc='"+pessoa.getPessoaDoc()+"',"+
-					 " pessoa_email='"+pessoa.getPessoaEmail()+"',"+
-					 " pessoa_telefone='"+pessoa.getPessoaTelefone()+"',"+
-					 " pessoa_cep='"+pessoa.getPessoaCep()+"',"+
-					 " pessoa_bairro='"+pessoa.getPessoaBairro()+"',"+
-					 " pessoa_tipo='"+pessoa.getPessoaTipo()+"'"+
-					 " WHERE pessoa_fk_usuario='"+pessoa.getPessoaFkUsuario()+"'";
+					 " pessoa_nome_completo = ?,"+
+					 " pessoa_sexo = ?,"+
+					 " pessoa_doc = ?,"+
+					 " pessoa_email = ?,"+
+					 " pessoa_telefone = ?,"+
+					 " pessoa_cep = ?,"+
+					 " pessoa_bairro = ?,"+
+					 " pessoa_tipo = ?"+
+					 " WHERE pessoa_fk_usuario = ?";
         	
 			ps = connection.prepareStatement(sql);
+			ps.setString(1, pessoa.getPessoaNomeCompleto());
+			ps.setString(2, pessoa.getPessoaSexo());
+			ps.setString(3, pessoa.getPessoaDoc());
+			ps.setString(4, pessoa.getPessoaEmail());
+			ps.setString(5, pessoa.getPessoaTelefone());
+			ps.setString(6, pessoa.getPessoaCep());
+			ps.setString(7, pessoa.getPessoaBairro());
+			ps.setInt(8, pessoa.getPessoaTipo());
+			ps.setInt(9, pessoa.getPessoaFkUsuario());
+			
 			ps.executeUpdate();
 			
 			String sql2 = "UPDATE sistema.pessoa SET"+
-					 " pessoa_fk_cidade='"+pessoa.getPessoaFkCidade()+"'"+
-					 " WHERE pessoa_fk_usuario='"+pessoa.getPessoaFkUsuario()+"'";
+					 " pessoa_fk_cidade = ?" +
+					 " WHERE pessoa_fk_usuario = ?";
 			
 			if(pessoa.getPessoaFkCidade()!=0){
 				ps = connection.prepareStatement(sql2);
+				ps.setInt(1, pessoa.getPessoaFkCidade());
+				ps.setInt(2, pessoa.getPessoaFkUsuario());
+				
 				ps.executeUpdate();
 			}
 			String sql3 = "UPDATE sistema.pessoa SET"+
-					 " pessoa_fk_estado='"+pessoa.getPessoaFkEstado()+"'"+
-					 " WHERE pessoa_fk_usuario='"+pessoa.getPessoaFkUsuario()+"'";
+					 " pessoa_fk_estado = ?"+
+					 " WHERE pessoa_fk_usuario = ?";
 			
 			if(pessoa.getPessoaFkEstado()!=0){
 				ps = connection.prepareStatement(sql3);
+				ps.setInt(1, pessoa.getPessoaFkEstado());
+				ps.setInt(2, pessoa.getPessoaFkUsuario());
+				
 				ps.executeUpdate();
 			}
 			ps.close();

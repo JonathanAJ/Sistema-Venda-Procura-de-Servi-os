@@ -21,13 +21,25 @@ public class ServicoController extends HttpServlet {
 		servico.setServFkUsuario(user.getUserPkId());
 		servico.setServNome(request.getParameter("servNome"));
 		servico.setServDescricao(request.getParameter("servDescricao"));
-		servico.setServFkCateg1(Integer.parseInt(request.getParameter("servCateg1")));
-		servico.setServFkCateg2(Integer.parseInt(request.getParameter("servCateg2")));
 		servico.setServValor(request.getParameter("servValor"));
 		servico.setServImagem(request.getParameter("servImagem"));
 		
+		boolean isNum;
+		try {
+			 servico.setServFkCateg1(Integer.parseInt(request.getParameter("servCateg1")));
+			 servico.setServFkCateg2(Integer.parseInt(request.getParameter("servCateg2")));
+			 isNum = true;
+		}
+		catch (NumberFormatException ex) {
+		     isNum = false;
+		}
+		
 		String acao = request.getParameter("acao");
-		if(acao.equals("criar")){
+		if(acao.equals("criar") && isNum
+				&& !servico.getServNome().isEmpty()
+				&& !servico.getServDescricao().isEmpty()
+				&& !servico.getServValor().isEmpty()){
+			
 			ServicosDAO dao = new ServicosDAO();
 			String msg = Integer.toString(dao.criarServico(servico));
 			PrintWriter out = response.getWriter();

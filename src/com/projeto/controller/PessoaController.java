@@ -15,6 +15,7 @@ public class PessoaController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		Pessoa pessoa = new Pessoa();
+		PrintWriter out = response.getWriter();
 		
 		HttpSession ss = request.getSession(true);
 		Usuario user = (Usuario) ss.getAttribute("Usuario");
@@ -25,19 +26,29 @@ public class PessoaController extends HttpServlet {
 		pessoa.setPessoaCep(request.getParameter("pessoaCep"));
 		pessoa.setPessoaDoc(request.getParameter("pessoaDoc"));
 		pessoa.setPessoaBairro(request.getParameter("pessoaBairro"));
-		pessoa.setPessoaFkCidade(Integer.parseInt(request.getParameter("pessoaCidade")));
-		pessoa.setPessoaFkEstado(Integer.parseInt(request.getParameter("pessoaEstado")));
-		pessoa.setPessoaTipo(Short.parseShort(request.getParameter("pessoaTipo")));
+		
+		boolean isNum = true;
+		try {
+			pessoa.setPessoaFkCidade(Integer.parseInt(request.getParameter("pessoaCidade")));	
+			pessoa.setPessoaFkEstado(Integer.parseInt(request.getParameter("pessoaEstado")));
+			pessoa.setPessoaTipo(Short.parseShort(request.getParameter("pessoaTipo")));
+		}
+		catch(NumberFormatException e){
+			isNum = false;
+		}
+		
 		pessoa.setPessoaTelefone(request.getParameter("pessoaTelefone"));
 		pessoa.setPessoaSexo(request.getParameter("pessoaSexo"));
 		
-		if(request.getParameter("acao").equals("atualizar")){
+		if(request.getParameter("acao").equals("atualizar") && isNum){
 			PessoasDAO dao = new PessoasDAO();
 			String msg = Integer.toString(dao.atualizarPessoa(pessoa));
-			PrintWriter out = response.getWriter();
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("UTF-8");
 			out.write(msg);
+		}else {
+			System.out.println("erro");
+			out.write("0");	
 		}
 	}
 }

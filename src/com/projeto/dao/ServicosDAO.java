@@ -50,9 +50,14 @@ private List<Servicos> servicos = new ArrayList<Servicos>();
 		try {
 	    	Connection connection = new ConexaoBD().getConexao();
 	    	System.out.println("Conexao aberta!");
-	        Statement statement = connection.createStatement();
-	        String sql = "SELECT * FROM sistema.servicos WHERE serv_fk_usuario='"+idUsuario+"'";
-	        ResultSet resultSet = statement.executeQuery(sql);
+	    	
+	        String sql = "SELECT * FROM sistema.servicos WHERE serv_fk_usuario = ?";
+	        
+	    	PreparedStatement ps = connection.prepareStatement(sql);
+	        ps.setInt(1, idUsuario);
+	    	
+	        ResultSet resultSet = ps.executeQuery();
+	        
 	        while (resultSet.next()) {
 	        	Servicos serv = new Servicos();
 	        	serv.setServPkId(resultSet.getLong("serv_pk_id"));
@@ -66,7 +71,7 @@ private List<Servicos> servicos = new ArrayList<Servicos>();
 	        	servicos.add(serv);
 	        }
 	        resultSet.close();
-	        statement.close();
+	        ps.close();
 	        connection.close();
 	        return servicos;
 	        		
@@ -80,11 +85,16 @@ private List<Servicos> servicos = new ArrayList<Servicos>();
 		try {
 	    	Connection connection = new ConexaoBD().getConexao();
 	    	System.out.println("Conexao aberta!");
-	        Statement statement = connection.createStatement();
-	        String sql = "SELECT * FROM sistema.servicos WHERE serv_pk_id='" + id + "'";
-	        ResultSet resultSet = statement.executeQuery(sql);
+	    	
+	        String sql = "SELECT * FROM sistema.servicos WHERE serv_pk_id = ?";
+	        
+	    	PreparedStatement ps = connection.prepareStatement(sql);
+	        ps.setInt(1, id);
+	    	
+	        ResultSet resultSet = ps.executeQuery();
+	        
         	Servicos serv = new Servicos();
-	        while (resultSet.next()) {
+        	if(resultSet.next()){
 	        	serv.setServPkId(resultSet.getLong("serv_pk_id"));
 	        	serv.setServNome(resultSet.getString("serv_nome"));
 	        	serv.setServDescricao(resultSet.getString("serv_descricao"));
@@ -92,10 +102,13 @@ private List<Servicos> servicos = new ArrayList<Servicos>();
 	        	serv.setServImagem(resultSet.getString("serv_imagem"));
 	        	serv.setServFkCateg1(resultSet.getInt("serv_fk_categ1"));
 	        	serv.setServFkCateg2(resultSet.getInt("serv_fk_categ2"));
-	        	serv.setServFkUsuario(resultSet.getInt("serv_fk_usuario"));
-	        }
+	        	serv.setServFkUsuario(resultSet.getInt("serv_fk_usuario"));	
+        	}
+        	else {
+        		serv = null;
+        	}
 	        resultSet.close();
-	        statement.close();
+	        ps.close();
 	        connection.close();
 	        return serv;
 	        		
@@ -112,30 +125,45 @@ private List<Servicos> servicos = new ArrayList<Servicos>();
 			/*
 			 * Atualiza servico 
 			 */
-        	String sql = "UPDATE sistema.servicos SET"+
-					 " serv_nome='"+servico.getServNome()+"',"+
-					 " serv_descricao='"+servico.getServDescricao()+"',"+
-					 " serv_valor='"+servico.getServValor()+"',"+
-					 " serv_fk_categ1='"+servico.getServFkCateg1()+"',"+
-					 " serv_fk_categ2='"+servico.getServFkCateg2()+"'"+
-					 " WHERE serv_fk_usuario='"+servico.getServFkUsuario()+"'";
+        	String sql = "UPDATE sistema.servicos SET" +
+					 " serv_nome = ?," +
+					 " serv_descricao = ?," +
+					 " serv_valor = ?," +
+					 " serv_fk_categ1 = ?," +
+					 " serv_fk_categ2 = ?" +
+					 " WHERE serv_fk_usuario = ?";
+        	
 			ps = connection.prepareStatement(sql);
+			ps.setString(1, servico.getServNome());
+			ps.setString(2, servico.getServDescricao());
+			ps.setString(3, servico.getServValor());
+			ps.setInt(4, servico.getServFkCateg1());
+			ps.setInt(5, servico.getServFkCateg2());
+			ps.setInt(6, servico.getServFkUsuario());
+			
 			ps.executeUpdate();
 			
-			String sql2 = "UPDATE sistema.servicos SET"+
-					 " serv_fk_categ1='"+servico.getServFkCateg1()+"'"+
-					 " WHERE serv_fk_usuario='"+servico.getServFkUsuario()+"'";
+			String sql2 = "UPDATE sistema.servicos SET " +
+					 "serv_fk_categ1 = ? " +
+					 "WHERE serv_fk_usuario = ?";
 			
-			if(servico.getServFkCateg1()!=0){
+			if(servico.getServFkCateg1() != 0){
 				ps = connection.prepareStatement(sql2);
+				ps.setInt(1, servico.getServFkCateg1());
+				ps.setInt(2, servico.getServFkUsuario());
+				
 				ps.executeUpdate();
 			}
-			String sql3 = "UPDATE sistema.servicos SET"+
-					 " serv_fk_categ2='"+servico.getServFkCateg2()+"'"+
-					 " WHERE serv_fk_usuario='"+servico.getServFkUsuario()+"'";
 			
-			if(servico.getServFkCateg2()!=0){
+			String sql3 = "UPDATE sistema.servicos SET" +
+					 "serv_fk_categ2 = ? " +
+					 "WHERE serv_fk_usuario = ?";
+			
+			if(servico.getServFkCateg2() != 0) {
 				ps = connection.prepareStatement(sql3);
+				ps.setInt(1, servico.getServFkCateg2());
+				ps.setInt(2, servico.getServFkUsuario());
+				
 				ps.executeUpdate();
 			}
 			ps.close();
@@ -169,25 +197,30 @@ private List<Servicos> servicos = new ArrayList<Servicos>();
 				if (rs.next()) {
 				    ultimoID = rs.getInt(1);
 				}
-				String sql2 = "UPDATE sistema.servicos SET"+
-						 " serv_fk_categ1='"+servico.getServFkCateg1()+"'"+
-						 " WHERE serv_pk_id='"+ultimoID+"'";
+				
+				String sql2 = "UPDATE sistema.servicos SET " +
+						 "serv_fk_categ1 = ? " +
+						 "WHERE serv_pk_id = ? ";
 				
 				if(servico.getServFkCateg1()!=0){
 					ps = connection.prepareStatement(sql2);
+					ps.setInt(1, servico.getServFkCateg1());
+					ps.setInt(2, ultimoID);
 					ps.executeUpdate();
 				}
-				String sql3 = "UPDATE sistema.servicos SET"+
-						 " serv_fk_categ2='"+servico.getServFkCateg2()+"'"+
-						 " WHERE serv_pk_id='"+ultimoID+"'";
+				
+				String sql3 = "UPDATE sistema.servicos SET " +
+						 "serv_fk_categ2 = ? " +
+						 "WHERE serv_pk_id = ? ";
 				
 				if(servico.getServFkCateg2()!=0){
 					ps = connection.prepareStatement(sql3);
+					ps.setInt(1, servico.getServFkCateg2());
+					ps.setInt(2, ultimoID);
 					ps.executeUpdate();
 				}
 				ps.close();
 				connection.close();
-				
 				
 	            return 1;
 			}catch(SQLException e){
