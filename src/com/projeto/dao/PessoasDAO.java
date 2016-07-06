@@ -53,15 +53,17 @@ private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	public Pessoa getPessoa(int fk_usuario){
 		try {
 	    	Connection connection = new ConexaoBD().getConexao();
-	    	System.out.println("Conexao aberta!");
-	        Statement statement = connection.createStatement();
+	    	
 	        String sql = "SELECT pessoa_pk_id, pessoa_nome_completo, pessoa_sexo,"+
 	        			 " pessoa_doc, pessoa_email, pessoa_telefone, pessoa_cep,"+
 	        			 " pessoa_fk_cidade, pessoa_fk_estado, pessoa_fk_usuario,"+
 	        			 " pessoa_bairro, pessoa_tipo"+
-	        			 " FROM sistema.pessoa WHERE pessoa_fk_usuario='"+fk_usuario+"'";
+	        			 " FROM sistema.pessoa WHERE pessoa_fk_usuario = ?";
 	        
-	        ResultSet resultSet = statement.executeQuery(sql);
+
+	        PreparedStatement ps = connection.prepareStatement(sql);
+	        ps.setInt(1, fk_usuario);
+	        ResultSet resultSet = ps.executeQuery();
         	
 	        Pessoa pessoa = new Pessoa();
         	
@@ -81,7 +83,7 @@ private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	        	
 	        }
 	        resultSet.close();
-	        statement.close();
+	        ps.close();
 	        connection.close();
 	        
 	        return pessoa;
@@ -95,7 +97,6 @@ private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	public int atualizarPessoa(Pessoa pessoa){
 		try{
         	Connection connection = new ConexaoBD().getConexao();
-        	PreparedStatement ps = null;
 			/*
 			 * Atualiza Pessoa 
 			 */
@@ -110,7 +111,7 @@ private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 					 " pessoa_tipo = ?"+
 					 " WHERE pessoa_fk_usuario = ?";
         	
-			ps = connection.prepareStatement(sql);
+        	PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, pessoa.getPessoaNomeCompleto());
 			ps.setString(2, pessoa.getPessoaSexo());
 			ps.setString(3, pessoa.getPessoaDoc());

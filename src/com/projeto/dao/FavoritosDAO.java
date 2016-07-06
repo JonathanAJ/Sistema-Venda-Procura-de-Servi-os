@@ -44,24 +44,27 @@ private List<Favoritos> favoritos = new ArrayList<Favoritos>();
 		try {
 			
 	    	Connection connection = new ConexaoBD().getConexao();
-	        Statement statement = connection.createStatement();
 	        String sql = "SELECT favorito_pk_id FROM sistema.favoritos WHERE" +
-	        			 " favorito_fk_serv='"+idServico+"' AND"+
-	        			 " favorito_fk_usuario='"+idUsuario+"'";
+	        			 " favorito_fk_serv = ? AND"+
+	        			 " favorito_fk_usuario = ?";
 	        
-	        ResultSet resultSet = statement.executeQuery(sql);
+	        PreparedStatement ps = connection.prepareStatement(sql);
+	        ps.setLong(1, idServico);
+	        ps.setLong(2, idUsuario);
+	        
+	        ResultSet resultSet = ps.executeQuery();
 	        resultSet.next();
 	        /*
 	         * Se não houver linhas retorne true
 	         */
 	        if (resultSet.getRow()==0) {
 		        resultSet.close();
-		        statement.close();
+		        ps.close();
 		        connection.close();
 		        return true;
 	        }else{
 		        resultSet.close();
-		        statement.close();
+		        ps.close();
 		        connection.close();
 		        return false;
 	        }
@@ -76,11 +79,13 @@ private List<Favoritos> favoritos = new ArrayList<Favoritos>();
 		try {
 			
 	    	Connection connection = new ConexaoBD().getConexao();
-	        Statement statement = connection.createStatement();
 	        String sql = "SELECT * FROM sistema.favoritos WHERE" +
-	        			 " favorito_fk_usuario='"+idUsuario+"'";
+	        			 " favorito_fk_usuario = ?";
+	    	PreparedStatement ps = connection.prepareStatement(sql);
+	    	ps.setInt(1, idUsuario);
+	    	
+	        ResultSet resultSet = ps.executeQuery();
 	        
-	        ResultSet resultSet = statement.executeQuery(sql);
 	        while (resultSet.next()) {
 	        	Favoritos fav = new Favoritos();
 	        	fav.setFavoritoPkId(resultSet.getLong("favorito_pk_id"));
@@ -88,8 +93,9 @@ private List<Favoritos> favoritos = new ArrayList<Favoritos>();
 	        	fav.setFavoritoFkUsuario(resultSet.getInt("favorito_fk_usuario"));
 	        	favoritos.add(fav);
 	        }
+	        
 	        resultSet.close();
-	        statement.close();
+	        ps.close();
 	        connection.close();
 	        return favoritos;
 	        			
@@ -101,14 +107,13 @@ private List<Favoritos> favoritos = new ArrayList<Favoritos>();
 	
 	public int criarFavorito(int idServico, int idUsuario){
 			try{
-	        	Connection connection = new ConexaoBD().getConexao();
-	        	PreparedStatement ps = null;	
 				/*
 				 * Insere Favorito 
 				 */
+	        	Connection connection = new ConexaoBD().getConexao();
 	        	String sql = "INSERT INTO sistema.favoritos (favorito_fk_serv, favorito_fk_usuario)"+
 						 	 " VALUES (?,?)";
-				ps = connection.prepareStatement(sql);
+	        	PreparedStatement ps = connection.prepareStatement(sql);
 				ps.setInt(1, idServico);
 				ps.setInt(2, idUsuario);
 				ps.executeUpdate();
