@@ -17,7 +17,16 @@ public class UsuarioController extends HttpServlet {
 		
 		String acao = request.getParameter("acao");
 		
-		if(acao.equals("criar")){
+		if(acao == null){
+			PrintWriter out = response.getWriter();
+			String msg = "0";
+			out = response.getWriter();
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
+			out.write(msg);
+			
+		}
+		else if(acao.equals("criar")){
 
 			PrintWriter out = response.getWriter();
 			UsuariosDAO userDao = new UsuariosDAO();
@@ -27,8 +36,10 @@ public class UsuarioController extends HttpServlet {
 			String senha = request.getParameter("senha");
 			
 			String msg = "0";
-			if(!login.isEmpty() && !email.isEmpty() && !senha.isEmpty()){
-				msg = Integer.toString(userDao.criarUsuario(login, email, senha));
+			if(login != null || email != null || senha != null){
+				if(!login.isEmpty() || !email.isEmpty() || !senha.isEmpty()){
+					msg = Integer.toString(userDao.criarUsuario(login, email, senha));	
+				}
 			}
 			
 			out = response.getWriter();
@@ -48,8 +59,10 @@ public class UsuarioController extends HttpServlet {
 			String senha = request.getParameter("senha"); 
 			String lembrarLogin = request.getParameter("lembrar");
 	        
-			if(!login.isEmpty() && !senha.isEmpty()){
-				user = userDao.getUsuario(login, senha);
+			if(login != null || senha != null){
+				if(!login.isEmpty() && !senha.isEmpty()){
+					user = userDao.getUsuario(login, senha);
+				}
 			}
 			
 			response.setContentType("text/plain");
@@ -92,9 +105,6 @@ public class UsuarioController extends HttpServlet {
 			else{
 	    		out.write("0");
 			}
-			
-		}
-		else if(acao.equals("logout")){
 			
 		}
 		

@@ -128,8 +128,11 @@ public class UsuariosDAO {
 					Usuario user = new Usuario();
 					user = this.getUsuario(login, senha);
 					int user_pk_id = user.getUserPkId();
-					sql = "INSERT INTO sistema.pessoa (pessoa_fk_usuario, pessoa_email, pessoa_tipo) "+
-						  "VALUES (?,?,0)";
+					
+					sql = "INSERT INTO sistema.pessoa (pessoa_fk_usuario, pessoa_email,"+
+							" pessoa_sexo, pessoa_nome_completo, pessoa_doc, pessoa_telefone, pessoa_cep, pessoa_bairro, pessoa_tipo)"+
+							  					" VALUES (?,?,'','','','','','',0)";
+					
 		            ps = connection.prepareStatement(sql);
 		            ps.setInt(1, user_pk_id);
 		            ps.setString(2, email);

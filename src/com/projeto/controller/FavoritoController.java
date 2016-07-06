@@ -20,7 +20,6 @@ public class FavoritoController extends HttpServlet {
 		
 		String acao = request.getParameter("acao");
 		int favoritoId = Integer.parseInt(request.getParameter("favoritoId"));
-		System.out.println("ID: "+favoritoId); 
 		if(acao.equals("favoritar")){
 			String msg = Integer.toString(favorito.criarFavorito(favoritoId, user.getUserPkId()));
 			PrintWriter out = response.getWriter();
